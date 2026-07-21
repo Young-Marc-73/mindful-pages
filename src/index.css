@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --gap: 1.25rem;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-cream text-charcoal font-sans antialiased;
+    /* subtle warm paper grain */
+    background-image:
+      radial-gradient(1200px 700px at 50% -15%, rgba(169, 205, 201, 0.22), transparent 60%),
+      radial-gradient(900px 600px at 90% 10%, rgba(199, 154, 60, 0.08), transparent 55%);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    @apply bg-gold/30 text-ink;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-serif text-ink;
+    font-optical-sizing: auto;
+  }
+
+  /* Honor users who prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+
+  /* Eyebrow / kicker label used above section headings */
+  .kicker {
+    @apply inline-flex items-center gap-2 rounded-full border border-gold/40 bg-cream-soft/70
+           px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-gold-deep;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold
+           transition-all duration-300 focus:outline-none focus-visible:ring-2
+           focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-cream;
+  }
+
+  .btn-primary {
+    @apply btn bg-ink text-cream-soft shadow-soft hover:bg-ink-soft hover:shadow-lift
+           hover:-translate-y-0.5;
+  }
+
+  .btn-gold {
+    @apply btn bg-gold text-ink shadow-gold hover:bg-gold-bright hover:-translate-y-0.5;
+  }
+
+  .btn-ghost {
+    @apply btn border border-ink/15 bg-transparent text-ink hover:border-ink/40 hover:bg-ink/5;
+  }
+
+  /* Fine hairline divider */
+  .hairline {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-ink/15 to-transparent;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  /* Glassy surface used by the navbar + cards */
+  .glass {
+    background: rgba(255, 253, 248, 0.72);
+    backdrop-filter: saturate(140%) blur(12px);
+    -webkit-backdrop-filter: saturate(140%) blur(12px);
+  }
+}

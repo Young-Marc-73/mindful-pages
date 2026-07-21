@@ -1,0 +1,11 @@
+# Netlify deploy config for Mindful Pages (Vite SPA)
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Note: no SPA catch-all redirect is needed (single-page, no client-side router).
+# Netlify Forms processes POSTs to "/" before any redirects, so the waitlist
+# form in index.html is detected and submissions land in Forms → "waitlist".
