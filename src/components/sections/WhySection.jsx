@@ -25,11 +25,11 @@ export default function WhySection() {
         <Reveal className="mx-auto max-w-2xl text-center">
           <span className="kicker mb-5">Why Mindful Pages</span>
           <h2 className="text-balance font-serif text-4xl font-semibold leading-tight text-ink sm:text-5xl">
-            Small books that make a
-            <span className="italic text-gold-deep"> real difference</span>
+            A place for the thinking
+            <span className="italic text-gold-deep"> behind your business</span>
           </h2>
           <p className="mt-5 text-lg text-charcoal-muted">
-            We make calm, premium tools for thinking clearly — priced so anyone can start today.
+            A question to investigate, a decision to make, or an experience to understand. Start there.
           </p>
         </Reveal>
 
@@ -37,10 +37,10 @@ export default function WhySection() {
           <BentoGrid className="grid-cols-1 auto-rows-[16rem] md:grid-cols-3 md:auto-rows-[18rem]">
             {/* Structured — wide */}
             <BentoCard
-              name="Structured, not blank"
+              name="Guidance with room to think"
               className="md:col-span-2"
               Icon={PenLine}
-              description="Guided prompts and layouts that take you from a blank stare to a finished thought — every single page has a job."
+              description="Explanations and questions help you begin. Open space lets you develop the thought in your own way."
               href="#approach"
               cta="See the process"
               background={
@@ -50,11 +50,11 @@ export default function WhySection() {
 
             {/* Affordable — tall-ish */}
             <BentoCard
-              name="$15–$30"
+              name="Start where you are"
               Icon={Tag}
-              description="Premium feel, honest price. Every journal sits in reach as a treat for yourself or a thoughtful gift."
+              description="Choose the book that supports the work in front of you. Return to another when the question changes."
               href="#journals"
-              cta="Browse prices"
+              cta="Explore the books"
               background={
                 <div className="absolute inset-0 bg-[radial-gradient(120%_120%_at_0%_100%,rgba(47,111,106,0.14),transparent_55%)]" />
               }
@@ -62,9 +62,9 @@ export default function WhySection() {
 
             {/* Niche-specific — with drifting covers */}
             <BentoCard
-              name="Made for your niche"
+              name="Built around your business"
               Icon={Target}
-              description="Songwriters, founders, readers, busy women — each journal speaks to a specific life, not everyone at once."
+              description="Bring research, experience, and decisions together so you can see how the parts of your business connect."
               href="#journals"
               cta="Find yours"
               background={<MiniCovers />}
@@ -72,12 +72,12 @@ export default function WhySection() {
 
             {/* Fast / POD — wide */}
             <BentoCard
-              name="Print-on-demand, shipped by Amazon"
+              name="Books coming soon"
               className="md:col-span-2"
               Icon={Truck}
-              description="Printed fresh when you order and delivered by Amazon — no warehouses, no waiting, no fuss. Just a beautiful book at your door."
+              description="Strategic Thinking and the Business Journal are our first planned releases. Amazon purchase links will appear when the books are published."
               href="#journals"
-              cta="Shop on Amazon"
+              cta="See the upcoming titles"
               background={
                 <div className="absolute inset-0 bg-[radial-gradient(120%_120%_at_50%_120%,rgba(106,79,176,0.12),transparent_55%)]" />
               }

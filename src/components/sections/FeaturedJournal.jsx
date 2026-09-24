@@ -1,15 +1,15 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight, Music, Check } from "lucide-react";
+import { ArrowRight, BookOpen, Check } from "lucide-react";
 import Reveal from "../motion/Reveal";
 import CoverArt from "../brand/CoverArt";
 import DotPattern from "../magicui/DotPattern";
 import { featuredJournal } from "../../data/journals";
 
 const highlights = [
-  "Lyric pages with built-in rhyme & syllable guides",
-  "Chord charts and song-structure templates",
-  "A verse → chorus → bridge writing workflow",
-  "Space to log ideas before they slip away",
+  "Guided questions across the Seven Business Signals",
+  "Space to connect evidence and experience",
+  "A place to identify assumptions and unanswered questions",
+  "A record you can revisit as your understanding grows",
 ];
 
 export default function FeaturedJournal() {
@@ -38,15 +38,16 @@ export default function FeaturedJournal() {
             {/* Details */}
             <Reveal delay={0.15}>
               <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-gold-bright">
-                <Music className="h-3.5 w-3.5" /> Featured journal
+                <BookOpen className="h-3.5 w-3.5" /> Featured journal
               </span>
-              <h2 className="mt-5 font-serif text-4xl font-semibold leading-tight sm:text-5xl">
+              <h2 className="mt-5 font-serif text-4xl font-semibold leading-tight text-cream-soft sm:text-5xl">
                 {j.title}
               </h2>
               <p className="mt-4 max-w-xl text-lg leading-relaxed text-cream-soft/75">
-                Our most-developed journal. Built with songwriters, for songwriters — it turns
-                the messy magic of writing a song into a process you can actually follow, without
-                killing the spark.
+                In a small business, you may be responsible for marketing, operations, sales,
+                and the money. The conversations between those departments still happen.
+                Often, they happen inside your head. The Business Journal gives those
+                conversations somewhere to go.
               </p>
 
               <ul className="mt-7 grid gap-3 sm:grid-cols-2">
@@ -61,18 +62,10 @@ export default function FeaturedJournal() {
               </ul>
 
               <div className="mt-9 flex flex-wrap items-center gap-4">
-                <a
-                  href={j.amazonUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => j.amazonUrl === "REPLACE-WITH-AMAZON-URL" && e.preventDefault()}
-                  className="btn-gold"
-                >
-                  View on Amazon <ArrowUpRight className="h-4 w-4" />
+                <a href="#business-journal" className="btn-gold">
+                  Explore the journal <ArrowRight className="h-4 w-4" />
                 </a>
-                <span className="text-cream-soft/70">
-                  <span className="font-serif text-2xl text-cream-soft">{j.price}</span> · paperback
-                </span>
+                <span className="text-cream-soft/70">Coming soon · {j.price} planned paperback price</span>
               </div>
             </Reveal>
           </div>

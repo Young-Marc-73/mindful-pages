@@ -8,7 +8,6 @@ import Approach from "./components/sections/Approach";
 import JournalGrid from "./components/sections/JournalGrid";
 import FeaturedJournal from "./components/sections/FeaturedJournal";
 import WhySection from "./components/sections/WhySection";
-import Testimonials from "./components/sections/Testimonials";
 import AppSection from "./components/sections/AppSection";
 import Newsletter from "./components/sections/Newsletter";
 import Footer from "./components/sections/Footer";
@@ -29,7 +28,6 @@ export default function App() {
         <JournalGrid />
         <FeaturedJournal />
         <WhySection />
-        <Testimonials />
         <AppSection />
         <Newsletter />
       </main>

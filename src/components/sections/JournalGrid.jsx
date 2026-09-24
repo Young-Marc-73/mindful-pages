@@ -7,25 +7,27 @@ export default function JournalGrid() {
     <section id="journals" className="relative py-24 sm:py-28">
       <div className="container-page">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <span className="kicker mb-5">The Journals</span>
+          <span className="kicker mb-5">The Books & Journals</span>
           <h2 className="text-balance font-serif text-4xl font-semibold leading-tight text-ink sm:text-5xl">
             Find the one that fits
             <span className="italic text-gold-deep"> your work</span>
           </h2>
           <p className="mt-5 text-lg text-charcoal-muted">
-            A growing library of guided journals — for songwriters, entrepreneurs, readers,
-            and anyone who wants a little more structure. Each one links straight to Amazon.
+            Start with the work in front of you. Explore the Strategic Thinking books,
+            bring your business into focus, or preserve a question worth investigating.
+            All titles below are coming soon.
           </p>
         </Reveal>
 
         <Stagger
-          className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+          className="mt-14 grid gap-6 sm:grid-cols-2 xl:grid-cols-4"
           stagger={0.08}
         >
           {journals.map((j) => (
             <JournalCard key={j.id} journal={j} />
           ))}
         </Stagger>
+        <p className="mt-6 text-center text-sm text-charcoal-muted">Planned prices are in USD and will be reviewed before publication. Purchase links will appear when the books are available.</p>
       </div>
     </section>
   );

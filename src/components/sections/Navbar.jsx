@@ -5,9 +5,9 @@ import Quill from "../brand/Quill";
 import { cn } from "../../lib/utils";
 
 const links = [
-  { label: "Journals", href: "#journals" },
+  { label: "Books & Journals", href: "#journals" },
   { label: "Our Approach", href: "#approach" },
-  { label: "The App", href: "#app" },
+  { label: "Business Bloom", href: "#app" },
   { label: "About", href: "#about" },
 ];
 
@@ -68,7 +68,7 @@ export default function Navbar({ barVisible = false }) {
             className="btn-gold hidden px-5 py-2.5 text-sm sm:inline-flex"
           >
             <ShoppingBag className="h-4 w-4" />
-            Shop on Amazon
+            Explore the books
           </a>
           <button
             onClick={() => setOpen((v) => !v)}
@@ -102,7 +102,7 @@ export default function Navbar({ barVisible = false }) {
               </a>
             ))}
             <a href="#journals" onClick={() => setOpen(false)} className="btn-gold mt-1 w-full">
-              <ShoppingBag className="h-4 w-4" /> Shop on Amazon
+              <ShoppingBag className="h-4 w-4" /> Explore the books
             </a>
           </motion.div>
         )}

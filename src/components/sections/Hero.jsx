@@ -9,7 +9,6 @@ import { cn } from "../../lib/utils";
 const floatCovers = [
   { src: "/images/covers/business-journal.png", cls: "left-0 top-6 rotate-[-8deg] z-20", d: 0 },
   { src: "/images/covers/strategic-thinking.png", cls: "left-28 top-0 rotate-[4deg] z-30", d: 0.15 },
-  { src: "/images/covers/platforms-logbook.png", cls: "left-8 top-40 rotate-[6deg] z-10", d: 0.3 },
   { src: "/images/covers/research-journal.png", cls: "left-52 top-32 rotate-[-4deg] z-20", d: 0.45 },
 ];
 
@@ -31,7 +30,7 @@ export default function Hero() {
             <span className="kicker">
               <Star className="h-3.5 w-3.5 fill-gold text-gold" />
               <AnimatedShinyText className="text-gold-deep">
-                Structured journals & planners
+                Books, journals & a growing app
               </AnimatedShinyText>
             </span>
           </motion.div>
@@ -42,11 +41,11 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
             className="text-balance font-serif text-5xl font-semibold leading-[1.05] text-ink sm:text-6xl lg:text-7xl"
           >
-            Structure,
+            Give your business
             <br />
-            not just{" "}
+            thinking room to{" "}
             <span className="relative inline-block">
-              <span className="relative z-10 italic text-gold-deep">paper.</span>
+              <span className="relative z-10 italic text-gold-deep">grow.</span>
               <motion.span
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
@@ -62,9 +61,9 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-charcoal-muted"
           >
-            Every Mindful Pages journal walks you through a process —{" "}
-            <span className="text-charcoal">brainstorm, organize, plan, review</span> — so you're
-            never staring at a blank page. Calm, guided, and beautifully made.
+            Running a business gives you plenty to think about. A customer raises a question.
+            A conversation changes your perspective. Mindful Pages gives you somewhere to
+            bring those experiences together, understand what they mean, and decide what to do next.
           </motion.p>
 
           <motion.div
@@ -74,7 +73,7 @@ export default function Hero() {
             className="mt-9 flex flex-wrap items-center gap-3"
           >
             <a href="#journals" className="btn-primary group">
-              Browse the journals
+              Explore the books
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </a>
             <a href="#approach" className="btn-ghost">
@@ -88,12 +87,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="mt-9 flex items-center gap-5 text-sm text-charcoal-muted"
           >
-            <div className="flex items-center gap-1.5">
-              {[0, 1, 2, 3, 4].map((i) => (
-                <Star key={i} className="h-4 w-4 fill-gold text-gold" />
-              ))}
-            </div>
-            <span>Print quality you can feel · $15–$30 · Ships via Amazon</span>
+            <span>Books coming soon · Business Bloom in development</span>
           </motion.div>
         </div>
 

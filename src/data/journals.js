@@ -1,104 +1,74 @@
-// ─────────────────────────────────────────────────────────────────────────────
-//  Mindful Pages — journal catalog
-//
-//  👉 TO ADD YOUR REAL AMAZON LINKS: replace each `amazonUrl` value below.
-//     Look for the string "REPLACE-WITH-AMAZON-URL" — swap it for the product's
-//     Amazon listing URL (e.g. "https://www.amazon.com/dp/XXXXXXXXXX").
-//     Everything else on the site wires up automatically.
-// ─────────────────────────────────────────────────────────────────────────────
-
-const PLACEHOLDER = "REPLACE-WITH-AMAZON-URL";
-
-/**
- * cover  → path under /public for a real Canva cover, OR null to render a
- *          designed in-brand cover tile (see `tile`).
- * tile   → { variant: "ink" | "cream", motif: lucide icon name } used when
- *          no photographic cover exists yet.
- */
+// Pre-launch catalog. Activate purchase links only after each listing is published.
+// Planned prices: Workshop $21.99 / Repository $29.99 from the September 16,
+// 2026 KDP production package. Business Journal $28 / Research Journal $22
+// retain the existing site amounts pending Marc’s final publication price review.
 export const journals = [
   {
-    id: "songwriter",
-    title: "Songwriter's Journal",
-    audience: "For songwriters",
-    price: "$24",
-    description:
-      "Capture the spark, then shape it — lyric pages, chord charts, and a verse-to-bridge workflow that turns fragments into finished songs.",
-    cover: "/images/covers/songwriter.jpg",
-    amazonUrl: "https://www.amazon.com/dp/B0DLSNBN1R",
-    featured: true,
-    tags: ["Creative", "Structured"],
+    "id": "strategic-thinking",
+    "title": "Strategic Thinking: The Workshop",
+    "audience": "Volume One · A practical process",
+    "price": "$21.99",
+    "description": "Recognize the kind of thinking a situation requires, choose a useful method, and work from a question toward a responsible decision.",
+    "cover": "/images/covers/strategic-thinking.png",
+    "details": [
+      "You don’t need the same thinking method for every situation. Sometimes you need a better question. Sometimes you need to compare options, examine an assumption, or understand why a plan didn’t work.",
+      "The Workshop introduces four connected movements: Knowledge, Understanding, Wisdom, and Evaluation. Learn to gather useful evidence, discover relationships, develop options, and build practical plans.",
+      "Guidance for working with AI helps you put the methods into practice while keeping the decisions in your hands. Begin with the question in front of you. Use what helps. Return when you need something else."
+    ],
+    "status": "Coming soon",
+    "amazonUrl": null,
+    "series": "Business Series"
   },
   {
-    id: "platforms",
-    title: "Digital Life Log Book",
-    audience: "For managing your online life",
-    price: "$18",
-    description:
-      "One calm home for every account, subscription, and login you juggle — the Platforms Log Book brings order to your scattered digital life.",
-    cover: "/images/covers/platforms-logbook.png",
-    amazonUrl: PLACEHOLDER,
-    tags: ["Organizer", "Everyday"],
+    "id": "strategic-thinking-repository",
+    "title": "Strategic Thinking: The Repository",
+    "audience": "Volume Two · 166 thinking methods",
+    "price": "$29.99",
+    "description": "A working reference of 166 tools, methods, techniques, and frameworks. Find a method for the question in front of you—and see where its result can lead.",
+    "cover": "/images/covers/strategic-thinking.png",
+    "details": [
+      "Some situations need research. Others need comparison, a different perspective, or a way to test what you believe. The Repository gives you a collection of methods to return to as the work changes.",
+      "Each entry explains what a method is for, when to use it, how to work through it, and what its output connects to next. Indexes help you find methods by thinking movement, desired output, or business situation.",
+      "Use it independently as a reference, or alongside The Workshop. Practical AI hand-offs help you ask for useful assistance while keeping responsibility and judgment with you."
+    ],
+    "status": "Coming soon",
+    "amazonUrl": null,
+    "series": "Business Series"
   },
   {
-    id: "business-journal",
-    title: "Business Journal",
-    audience: "For entrepreneurs",
-    price: "$28",
-    description:
-      "The flagship. A guided system to think through your business daily — from big-picture vision down to the next right move.",
-    cover: "/images/covers/business-journal.png",
-    amazonUrl: PLACEHOLDER,
-    series: "Business Series",
-    tags: ["Business", "Flagship"],
+    "id": "business-journal",
+    "title": "Business Journal",
+    "audience": "Understanding your business",
+    "price": "$28",
+    "featured": true,
+    "description": "Bring the different parts of your business into focus. Guided questions help you connect what you have learned across the Seven Business Signals.",
+    "cover": "/images/covers/business-journal.png",
+    "details": [
+      "In a small business, you may be responsible for marketing, operations, sales, and the money. The conversations between those departments still happen. Often, they happen inside your head. The Business Journal gives those conversations somewhere to go.",
+      "Guided explanations and questions help you examine seven connected areas: Purpose and Direction, Customer and Need, Offer and Value, Market and Position, Reach and Sales, Operations and Capacity, and Money and Resilience.",
+      "Bring together what you have learned. Examine what you believe. Notice where the pieces agree, where they conflict, and what you still need to understand.",
+      "As the business changes, return to your entries and develop your thinking. Over time, you build a record of how your understanding grew—and what led you to change your mind."
+    ],
+    "status": "Coming soon",
+    "amazonUrl": null,
+    "series": "Business Series"
   },
   {
-    id: "strategic-thinking",
-    title: "Strategic Thinking",
-    audience: "Business Series companion",
-    price: "$22",
-    description:
-      "Slow down and think in frameworks. Prompts that pull you up to strategy when the day keeps dragging you into the weeds.",
-    cover: "/images/covers/strategic-thinking.png",
-    amazonUrl: PLACEHOLDER,
-    series: "Business Series",
-    tags: ["Business", "Companion"],
-  },
-  {
-    id: "research",
-    title: "Research Journal",
-    audience: "Business Series companion",
-    price: "$22",
-    description:
-      "A structured place to gather, question, and synthesize what you learn — so research becomes decisions, not just notes.",
-    cover: "/images/covers/research-journal.png",
-    amazonUrl: PLACEHOLDER,
-    series: "Business Series",
-    tags: ["Business", "Companion"],
-  },
-  {
-    id: "business-planner",
-    title: "Business Planner",
-    audience: "Business Series companion",
-    price: "$26",
-    description:
-      "Turn strategy into a calendar. Quarterly goals, weekly focus, and daily priorities that keep your business moving forward.",
-    cover: "/images/covers/business-planner.png",
-    amazonUrl: PLACEHOLDER,
-    series: "Business Series",
-    tags: ["Business", "Planner"],
-  },
-  {
-    id: "entrepreneur-series",
-    title: "4-Journal Entrepreneur Series",
-    audience: "For new entrepreneurs",
-    price: "$30",
-    description:
-      "The complete starter set — Business Journal, Strategic Thinking, Research, and Planner working together as one guided system.",
-    cover: null,
-    tile: { variant: "ink", motif: "Layers" },
-    amazonUrl: PLACEHOLDER,
-    tags: ["Business", "Bundle"],
-  },
+    "id": "research",
+    "title": "Research Journal",
+    "audience": "Knowledge worth returning to",
+    "price": "$22",
+    "description": "Keep the question. Make time for the discovery. Preserve what you want to study, then use open research pages to follow the subject in your own way.",
+    "cover": "/images/covers/research-journal.png",
+    "details": [
+      "You often notice something worth learning before you have time to study it. A recommended book. A customer’s observation. A question you can’t yet answer. The Research Journal gives that future learning a place to wait.",
+      "Use its Library to preserve subjects and sources you want to return to. When you are ready, move into open research pages and take notes without having to fit every thought into a box.",
+      "Guidance on making time to study and using AI as a research assistant helps you begin. The pages give you room to follow the subject wherever useful questions lead. Keep what you discover available for the next conversation, decision, or opportunity."
+    ],
+    "status": "Coming soon",
+    "amazonUrl": null,
+    "series": "Business Series"
+  }
 ];
 
-export const featuredJournal = journals.find((j) => j.featured);
+export const featuredJournal = journals.find((journal) => journal.featured);

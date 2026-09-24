@@ -19,25 +19,25 @@ const pillars = [
   {
     icon: Boxes,
     title: "Your business, organized",
-    body: "One home base. Capture notes and they auto-file into a living business plan you can export anytime.",
+    body: "We are building a place to connect your research, reflections, decisions, and plans so you can return to the thinking behind them.",
   },
   {
     icon: BrainCircuit,
-    title: "AI that actually knows you",
-    body: "A structured context layer your AI reasons from — so you get answers about your business, not generic ones.",
+    title: "A guided conversation",
+    body: "The aim is to help you explore a challenge, gather what you need to know, and develop a practical next step with AI supporting the conversation.",
   },
   {
     icon: Sprout,
-    title: "Grows you, not dependent",
-    body: "It surfaces questions and connections for you to reflect on. It never hands you the verdict — you stay sharp.",
+    title: "Your judgment stays central",
+    body: "You bring the experience, priorities, and judgment. Business Bloom is being designed to help you work with them.",
   },
 ];
 
-// ── How it works ──
+// ── The experience we are building ──
 const steps = [
-  { icon: NotebookPen, label: "Capture", body: "Jot down what matters — notes, decisions, ideas — the moment they happen." },
-  { icon: FolderInput, label: "Auto-file", body: "It organizes each note into a living business plan, building real understanding." },
-  { icon: Download, label: "Reflect & export", body: "Your AI surfaces questions to reflect on — and you can export the plan anytime." },
+  { icon: NotebookPen, label: "Explore", body: "Begin with a challenge, a question, or an experience you want to understand." },
+  { icon: FolderInput, label: "Connect", body: "Bring what you learn into a working picture of the situation." },
+  { icon: Download, label: "Act & learn", body: "Choose a practical next step, then return to what happened and what it taught you." },
 ];
 
 function scrollToWaitlist() {
@@ -56,21 +56,22 @@ export default function AppSection() {
         {/* Header */}
         <Reveal className="mx-auto max-w-3xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-gold-bright">
-            <Sparkles className="h-3.5 w-3.5" /> Coming soon — early access
+            <Sparkles className="h-3.5 w-3.5" /> Coming soon · In development
           </span>
           <h2 className="mt-6 text-balance font-serif text-4xl font-semibold leading-[1.1] text-cream-soft sm:text-5xl lg:text-[3.4rem]">
-            Your journals, now an app that makes your AI{" "}
-            <span className="italic text-gold-bright">actually know your business.</span>
+            Business Bloom
+            <span className="mt-3 block text-2xl font-normal italic text-gold-bright sm:text-3xl">A place to work through the business you’re building.</span>
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-cream-soft/75">
-            The organized home base for your business — capture what matters, and let your AI reason
-            from a real understanding of you. Built to grow you, not replace your thinking.
+            Business Bloom is the Mindful Pages app currently in development. We are building
+            a guided space where you can explore a challenge, gather what you need to know,
+            make sense of it, and develop a practical next step—with AI supporting the conversation.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <ShimmerButton onClick={scrollToWaitlist}>
               Join the waitlist <ArrowRight className="h-4 w-4" />
             </ShimmerButton>
-            <span className="text-sm text-cream-soft/55">MVP in early development · pre-launch</span>
+            <span className="text-sm text-cream-soft/55">In development · Release date to be announced</span>
           </div>
         </Reveal>
 
@@ -91,14 +92,14 @@ export default function AppSection() {
           ))}
         </Stagger>
 
-        {/* How it works */}
+        {/* The experience we are building */}
         <div className="mx-auto mt-20 max-w-4xl">
           <Reveal className="text-center">
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-cream-soft/50">
-              How it works
+              The experience we are building
             </span>
             <p className="mt-3 font-serif text-lg text-cream-soft/80">
-              Built on a simple spine — Knowledge → Understanding → Wisdom.
+              Knowledge → Understanding → Wisdom → Evaluation.
             </p>
           </Reveal>
 
@@ -129,7 +130,7 @@ export default function AppSection() {
               Be first through the door
             </h3>
             <p className="mt-2 text-cream-soft/65">
-              Join the early-access waitlist for the Mindful Pages app.
+              Join the Business Bloom waitlist for news of early access.
             </p>
           </div>
           <WaitlistForm />

@@ -1,113 +1,47 @@
-# Mindful Pages — Marketing Website
+# Mindful Pages marketing website
 
-A polished, animated single-page marketing site for the Mindful Pages journal brand.
-Built with **Vite + React + Tailwind CSS + Framer Motion**, using magicui-style components
-and real cover art pulled from Canva.
+Vite + React + Tailwind CSS + Framer Motion. Netlify builds with `npm run build`
+and publishes `dist`. The public site is https://mindfulpages.app/.
 
-> **Tagline in use:** "Structure, not just paper."
-> Alternates you can swap into `src/components/sections/Hero.jsx`:
-> • "A journal that thinks with you." • "Guided pages for a clearer mind."
+## Local development
 
----
+- `npm ci`
+- `npm run dev`
+- `npm run build`
+- `npm run preview`
 
-## ▶️ Run it locally
+## Current launch content — September 24, 2026
 
-```bash
-cd ~/mindful-pages
-npm install     # first time only
-npm run dev     # then open the printed http://localhost:5173 URL
-```
+The catalog features Strategic Thinking: The Workshop, Strategic Thinking:
+The Repository, Business Journal, and Research Journal. All are Coming soon.
+Business Bloom is in development, with the existing app waitlist retained.
+The established palette, animations, and cover assets are preserved. Both
+Strategic Thinking entries currently use the existing series cover image;
+individual volume cover exports can replace these at publication.
 
-Other commands:
-- `npm run build` — build the production site into `dist/`
-- `npm run preview` — preview that production build
+`src/data/journals.js` owns product copy, details, status, and planned prices.
 
----
+| Title | Planned USD paperback price | Basis |
+| --- | --- | --- |
+| The Workshop | $21.99 | September 16 KDP Production Package v1.1 |
+| The Repository | $29.99 | September 16 KDP Production Package v1.1 |
+| Business Journal | $28 | Retained existing website price; earlier replacement not verified |
+| Research Journal | $22 | Retained existing website price; earlier replacement not verified |
 
-## 🔗 Where to paste your real Amazon links
+Marc requested final pricing review at publication. App subscription figures
+previously discussed were tentative; no app price is displayed.
 
-Open **`src/data/journals.js`**. Every journal has this line:
+Before book launch, review prices, replace volume cover images as needed, and
+add verified Amazon listing URLs plus purchase links. Pre-launch cards use
+accessible expandable descriptions, with no placeholder purchase links.
 
-```js
-amazonUrl: PLACEHOLDER,   //  ← currently "REPLACE-WITH-AMAZON-URL"
-```
+The old testimonial section is not rendered because its claims are unverified.
+The inactive newsletter mockup is replaced by the closing brand message.
 
-Replace `PLACEHOLDER` with your real listing URL as a string, e.g.:
+## App waitlist
 
-```js
-amazonUrl: "https://www.amazon.com/dp/B0XXXXXXXX",
-```
-
-Do this for each journal you want linked. Every "View on Amazon" button and the
-"Shop on Amazon" navbar button use these automatically. (Buttons with the placeholder
-are intentionally inert so nothing links to a dead page.)
-
----
-
-## 🖼️ The cover images
-
-Real covers exported from your Canva live in **`public/images/covers/`**:
-
-| File | Journal |
-|------|---------|
-| `business-journal.png` | Business Journal |
-| `business-planner.png` | Business Planner |
-| `strategic-thinking.png` | Strategic Thinking |
-| `research-journal.png` | Research Journal |
-| `platforms-logbook.png` | Digital Life Log / Platform Organizer |
-| `daily-planner.png` | Daily Planner (interior) |
-| `floral-womens.png` | Floral Women's Journal (interior) |
-| `brand-titlepage.png` | Brand quill wordmark (reference) |
-
-Journals **without** a Canva cover render a designed, on-brand cover *tile*
-(navy+gold or cream+sage) — see `src/components/brand/CoverArt.jsx`. To use a real
-cover later, drop the PNG into `public/images/covers/` and set `cover: "/images/covers/your.png"`
-on that journal in `src/data/journals.js`.
-
----
-
-## 🎨 Palette & fonts
-
-All colors were sampled from your actual covers and live in **`tailwind.config.js`**
-(`ink`, `gold`, `cream`, `sage`, `terracotta`, `plum`, …). Fonts are **Fraunces**
-(serif display) + **Inter** (sans), loaded in `index.html`.
-
----
-
-## 📥 The app waitlist (Netlify Forms)
-
-The **"The App"** section (`src/components/sections/AppSection.jsx`) ends with a
-waitlist signup (`src/components/WaitlistForm.jsx`) wired to **Netlify Forms**.
-
-**How submissions reach you:** once this repo is deployed to Netlify, entries land in
-**Netlify dashboard → Forms → "waitlist"** (you can add email notifications there).
-Nothing to paste — it works automatically because:
-- `index.html` contains a hidden `<form name="waitlist" data-netlify="true">` twin that
-  Netlify detects at deploy time.
-- The React form POSTs url-encoded data to `/` with `form-name=waitlist`.
-- A honeypot field (`bot-field`) blocks basic spam.
-
-**Local testing:** in `npm run dev`, Netlify isn't in the loop, so the form *simulates*
-a successful submit (so you can see the success UX). Real recording only happens on the
-deployed site — submit there, then check Forms → waitlist.
-
-**Prefer Formspree instead?** Open `src/components/WaitlistForm.jsx` and set
-`FORMSPREE_ENDPOINT` (top of file) to your endpoint, e.g. `"https://formspree.io/f/abcdxyz"`.
-The form auto-switches to Formspree when that value is set.
-
-Deploy config lives in `netlify.toml` (build `npm run build`, publish `dist`).
-
-## 🧩 Project structure
-
-```
-src/
-  components/
-    magicui/     Marquee, BentoGrid, AnimatedShinyText, DotPattern
-    motion/      Reveal + Stagger (Framer Motion scroll reveals)
-    brand/       Quill (animated), CoverArt (real cover or designed tile)
-    sections/    Navbar, Hero, CoverMarquee, Approach, JournalGrid,
-                 FeaturedJournal, WhySection, Testimonials, Newsletter, Footer
-    JournalCard.jsx
-  data/journals.js   ← edit your journals + Amazon links here
-  App.jsx            ← page section order
-```
+`src/components/WaitlistForm.jsx` submits to Netlify Forms using the `waitlist`
+form name and fields `first-name`, `email`, and `bot-field`. Its matching static
+form remains in `index.html`. Entries should appear in Netlify Forms; existing
+submission handling is unchanged. Local dev simulates success. Verifying actual
+storage requires access to the Netlify Forms dashboard.

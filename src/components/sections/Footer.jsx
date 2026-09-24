@@ -3,15 +3,15 @@ import Quill from "../brand/Quill";
 
 const nav = {
   Explore: [
-    { label: "Journals", href: "#journals" },
+    { label: "Books & Journals", href: "#journals" },
     { label: "Our Approach", href: "#approach" },
-    { label: "The App", href: "#app" },
+    { label: "Business Bloom", href: "#app" },
     { label: "Why Mindful Pages", href: "#about" },
   ],
-  Popular: [
-    { label: "Songwriter's Journal", href: "#journals" },
+  "Coming soon": [
+    { label: "Strategic Thinking", href: "#strategic-thinking" },
     { label: "Business Journal", href: "#journals" },
-    { label: "Digital Life Log Book", href: "#journals" },
+    { label: "Research Journal", href: "#research" },
   ],
 };
 
@@ -30,11 +30,11 @@ export default function Footer() {
               </span>
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-charcoal-muted">
-              Structured journals and planners that walk you through the process — so you get
-              structure, not just paper.
+              Books, journals, and a growing app for gathering knowledge, developing understanding,
+              putting it to work, and learning from what happens.
             </p>
             <p className="mt-5 font-serif text-lg italic text-gold-deep">
-              Structure, not just paper.
+              Give your business thinking a place to grow.
             </p>
           </div>
 
@@ -59,12 +59,12 @@ export default function Footer() {
 
           {/* Connect */}
           <div>
-            <h4 className="font-serif text-base text-ink">Get one</h4>
+            <h4 className="font-serif text-base text-ink">Explore Mindful Pages</h4>
             <a
               href="#journals"
               className="btn-gold mt-4 w-full justify-center px-4 py-2.5 text-sm"
             >
-              <ShoppingBag className="h-4 w-4" /> Shop on Amazon
+              <ShoppingBag className="h-4 w-4" /> Explore the books
             </a>
             <a
               href="#app"
@@ -90,7 +90,7 @@ export default function Footer() {
           <p className="flex items-center gap-1.5">
             Made with care
             <span className="text-terracotta">·</span>
-            Printed on demand & shipped via Amazon KDP
+            Books coming soon · Business Bloom in development
           </p>
         </div>
       </div>

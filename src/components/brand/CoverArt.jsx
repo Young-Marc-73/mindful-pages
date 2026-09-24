@@ -21,7 +21,7 @@ export default function CoverArt({ journal, className }) {
       <div className={cn("relative overflow-hidden rounded-xl", ratio, className)}>
         <img
           src={journal.cover}
-          alt={`${journal.title} — journal cover by Mindful Pages`}
+          alt={`${journal.title} — cover by Mindful Pages`}
           loading="lazy"
           className="h-full w-full object-cover"
         />
@@ -41,7 +41,7 @@ export default function CoverArt({ journal, className }) {
           className
         )}
         role="img"
-        aria-label={`${journal.title} — journal cover by Mindful Pages`}
+        aria-label={`${journal.title} — cover by Mindful Pages`}
       >
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_0%,rgba(169,205,201,0.5),transparent_60%)]" />
         <div className="flex items-center justify-between px-4 pt-4">
@@ -72,7 +72,7 @@ export default function CoverArt({ journal, className }) {
         className
       )}
       role="img"
-      aria-label={`${journal.title} — journal cover by Mindful Pages`}
+      aria-label={`${journal.title} — cover by Mindful Pages`}
     >
       {/* Gold color-block cross, like the real covers */}
       <div className="pointer-events-none absolute inset-y-0 left-1/2 w-1/3 -translate-x-1/2 bg-gold/90" />

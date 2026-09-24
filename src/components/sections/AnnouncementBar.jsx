@@ -20,7 +20,7 @@ export default function AnnouncementBar({ onClose }) {
           href="#app"
           className="group inline-flex items-center gap-1.5 font-medium text-cream-soft/90 transition-colors hover:text-gold-bright"
         >
-          <span className="hidden sm:inline">The Mindful Pages app is coming —</span>
+          <span className="hidden sm:inline">Business Bloom is in development —</span>
           <span className="sm:hidden">New app coming —</span>
           <span className="font-semibold text-gold-bright underline-offset-4 group-hover:underline">
             join the waitlist

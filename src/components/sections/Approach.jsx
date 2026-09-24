@@ -5,36 +5,36 @@ import Reveal, { Stagger, staggerItem } from "../motion/Reveal";
 const steps = [
   {
     n: "01",
-    title: "Brainstorm",
+    title: "Knowledge",
     icon: Lightbulb,
-    body: "Start messy. Open prompts pull every idea, worry, and half-thought out of your head and onto the page.",
+    body: "Gather what you need to know. Preserve questions, observations, sources, and experience.",
     accent: "text-[#8a6410]", // deeper antique gold — the lighter gold-deep failed contrast on cream
     ring: "ring-gold/40",
     bg: "bg-gold/15",
   },
   {
     n: "02",
-    title: "Organize",
+    title: "Understanding",
     icon: ListTree,
-    body: "Sort the noise into themes. Structured layouts help you group, prioritize, and see what actually matters.",
+    body: "Make sense of what you have gathered. Find relationships, question assumptions, and see what is still missing.",
     accent: "text-sage-deep",
     ring: "ring-sage/40",
     bg: "bg-sage/15",
   },
   {
     n: "03",
-    title: "Plan",
+    title: "Wisdom",
     icon: CalendarCheck,
-    body: "Turn clarity into a path. Break the goal into steps you can act on this week — and this morning.",
+    body: "Put understanding to work. Choose a direction, make a practical plan, and act.",
     accent: "text-terracotta",
     ring: "ring-terracotta/25",
     bg: "bg-terracotta/10",
   },
   {
     n: "04",
-    title: "Review",
+    title: "Evaluation",
     icon: RefreshCw,
-    body: "Close the loop. Reflect on what worked, adjust with intention, and carry the momentum into what's next.",
+    body: "Learn from what happens. Compare the result with what you expected and carry the lesson forward.",
     accent: "text-plum",
     ring: "ring-plum/25",
     bg: "bg-plum/10",
@@ -48,12 +48,13 @@ export default function Approach() {
         <Reveal className="mx-auto max-w-2xl text-center">
           <span className="kicker mb-5">Our Approach</span>
           <h2 className="text-balance font-serif text-4xl font-semibold leading-tight text-ink sm:text-5xl">
-            A journal that walks you
-            <span className="italic text-gold-deep"> through the process</span>
+            Four movements.
+            <span className="italic text-gold-deep"> Connected thinking.</span>
           </h2>
           <p className="mt-5 text-lg text-charcoal-muted">
-            Blank pages ask you to figure it out alone. Every Mindful Pages journal is built
-            around one simple, repeatable rhythm — the same four movements, every time.
+            Our books and journals support Knowledge, Understanding, Wisdom, and Evaluation.
+            Each has a different job. Move between them as the question changes—real thinking
+            does not always travel in a straight line.
           </p>
         </Reveal>
 
@@ -75,7 +76,7 @@ export default function Approach() {
                 </div>
                 <div className="mt-5 flex items-baseline gap-2">
                   <span className={`font-serif text-sm font-semibold ${s.accent}`}>{s.n}</span>
-                  <h3 className="font-serif text-2xl text-ink">{s.title}</h3>
+                  <h3 className="font-serif text-xl text-ink">{s.title}</h3>
                 </div>
                 <p className="mt-2 text-sm leading-relaxed text-charcoal-muted">{s.body}</p>
               </motion.div>
