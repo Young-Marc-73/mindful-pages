@@ -82,6 +82,7 @@ export default function Approach() {
               </motion.div>
             ))}
           </Stagger>
+          <div className="mx-auto mt-8 max-w-3xl rounded-2xl border border-ink/10 bg-cream-soft p-6 text-sm leading-relaxed text-charcoal-muted"><h3 className="mb-2 font-serif text-xl text-ink">For example: should you raise your prices?</h3><p>Gather customer feedback and cost information. Examine what it means for your offer. Compare options and choose a practical change. Then review what happened. The books give each part of that work somewhere to develop.</p></div>
         </div>
       </div>
     </section>

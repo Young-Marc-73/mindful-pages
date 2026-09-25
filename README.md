@@ -45,3 +45,23 @@ form name and fields `first-name`, `email`, and `bot-field`. Its matching static
 form remains in `index.html`. Entries should appear in Netlify Forms; existing
 submission handling is unchanged. Local dev simulates success. Verifying actual
 storage requires access to the Netlify Forms dashboard.
+
+## Marketing review improvements — September 25, 2026
+
+- Distinct Strategic Thinking cover fronts extracted from approved v1.2 cover PDFs.
+  Covers use contain sizing; optimized WebP assets preserve the complete artwork.
+- Three actual manuscript pages per book at `/previews/*.html`, with text
+  alternatives. Previews are labeled as current manuscript samples; final print
+  layout may change. Source masters are unchanged.
+- `book-updates` Netlify form separates book news from optional app news.
+- `reader-contact` Netlify form supports questions, stopping updates, and privacy
+  requests. Both static schemas are in `index.html`; the original `waitlist`
+  form remains for Business Bloom. Read form submissions in Netlify; email
+  notification rules still depend on the existing Netlify account configuration.
+- Product chooser, practical example, creator introduction, privacy explanation,
+  social-preview metadata/image, sitemap, and robots file added.
+- Unverified Instagram link removed. Supporting card links no longer need hover.
+- Book prices unchanged except for consistent decimal formatting.
+
+Preview sources: Workshop and Repository KDP Interior v1.1; Business Journal
+Reader Review Draft v0.12; Research Journal Production Interior v1.1.

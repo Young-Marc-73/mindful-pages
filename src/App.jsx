@@ -10,6 +10,9 @@ import FeaturedJournal from "./components/sections/FeaturedJournal";
 import WhySection from "./components/sections/WhySection";
 import AppSection from "./components/sections/AppSection";
 import Newsletter from "./components/sections/Newsletter";
+import BookUpdates from "./components/sections/BookUpdates";
+import AboutMarc from "./components/sections/AboutMarc";
+import Privacy from "./components/sections/Privacy";
 import Footer from "./components/sections/Footer";
 
 export default function App() {
@@ -26,10 +29,13 @@ export default function App() {
         <CoverMarquee />
         <Approach />
         <JournalGrid />
+        <BookUpdates />
         <FeaturedJournal />
         <WhySection />
         <AppSection />
+        <AboutMarc />
         <Newsletter />
+        <Privacy />
       </main>
       <Footer />
     </div>

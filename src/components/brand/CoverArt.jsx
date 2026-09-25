@@ -14,7 +14,7 @@ const MOTIFS = { Music, Layers, BookOpen, Sparkles, Leaf, BookMarked };
  * so the catalog reads as one cohesive, designed set even where no photo exists.
  */
 export default function CoverArt({ journal, className }) {
-  const ratio = "aspect-[2/3]";
+  const ratio = "aspect-[4/5]";
 
   if (journal.cover) {
     return (
@@ -23,7 +23,7 @@ export default function CoverArt({ journal, className }) {
           src={journal.cover}
           alt={`${journal.title} — cover by Mindful Pages`}
           loading="lazy"
-          className="h-full w-full object-cover"
+          className="h-full w-full object-contain"
         />
       </div>
     );

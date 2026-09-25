@@ -6,7 +6,7 @@ import DotPattern from "../magicui/DotPattern";
 import { featuredJournal } from "../../data/journals";
 
 const highlights = [
-  "Guided questions across the Seven Business Signals",
+  "Guided questions across seven connected areas of your business",
   "Space to connect evidence and experience",
   "A place to identify assumptions and unanswered questions",
   "A record you can revisit as your understanding grows",

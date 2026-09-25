@@ -35,7 +35,7 @@ export function BentoCard({
       <div className="pointer-events-none absolute inset-0">{background}</div>
 
       {/* Foreground content, slides up slightly on hover */}
-      <div className="pointer-events-none z-10 flex transform-gpu flex-col gap-1 p-7 transition-all duration-500 group-hover:-translate-y-10">
+      <div className="pointer-events-none z-10 flex transform-gpu flex-col gap-1 p-7 pb-16 transition-all duration-500 ">
         {Icon && (
           <Icon className="h-9 w-9 origin-left text-gold-deep transition-all duration-500 ease-in-out group-hover:scale-90" />
         )}
@@ -44,7 +44,7 @@ export function BentoCard({
       </div>
 
       {/* Hover CTA */}
-      <div className="pointer-events-none absolute bottom-0 z-10 flex w-full translate-y-10 transform-gpu flex-row items-center p-7 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+      <div className="pointer-events-none absolute bottom-0 z-10 flex w-full transform-gpu flex-row items-center p-7 opacity-100 transition-all duration-500">
         <a
           href={href}
           className="pointer-events-auto inline-flex items-center gap-1.5 text-sm font-semibold text-gold-deep hover:text-ink"

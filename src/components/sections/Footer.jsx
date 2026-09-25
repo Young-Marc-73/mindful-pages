@@ -1,4 +1,4 @@
-import { Instagram, ShoppingBag, Sparkles } from "lucide-react";
+import { ShoppingBag, Sparkles } from "lucide-react";
 import Quill from "../brand/Quill";
 
 const nav = {
@@ -6,7 +6,7 @@ const nav = {
     { label: "Books & Journals", href: "#journals" },
     { label: "Our Approach", href: "#approach" },
     { label: "Business Bloom", href: "#app" },
-    { label: "Why Mindful Pages", href: "#about" },
+    { label: "About Marc", href: "#about" },
   ],
   "Coming soon": [
     { label: "Strategic Thinking", href: "#strategic-thinking" },
@@ -72,14 +72,7 @@ export default function Footer() {
             >
               <Sparkles className="h-4 w-4" /> Join the app waitlist
             </a>
-            <a
-              href="https://instagram.com/tenfoldmarc"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-3 inline-flex items-center gap-2 text-sm text-charcoal-muted transition-colors hover:text-ink"
-            >
-              <Instagram className="h-4 w-4" /> Follow along
-            </a>
+            <div className="mt-4 flex flex-wrap gap-4 text-sm"><a href="#contact" className="underline">Contact Marc</a><a href="#privacy" className="underline">Privacy</a></div>
           </div>
         </div>
 

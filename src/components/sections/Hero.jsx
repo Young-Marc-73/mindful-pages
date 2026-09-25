@@ -7,9 +7,9 @@ import { cn } from "../../lib/utils";
 
 // A few real covers float in the hero collage
 const floatCovers = [
-  { src: "/images/covers/business-journal.png", cls: "left-0 top-6 rotate-[-8deg] z-20", d: 0 },
-  { src: "/images/covers/strategic-thinking.png", cls: "left-28 top-0 rotate-[4deg] z-30", d: 0.15 },
-  { src: "/images/covers/research-journal.png", cls: "left-52 top-32 rotate-[-4deg] z-20", d: 0.45 },
+  { src: "/images/covers/business-journal.webp", cls: "left-0 top-6 rotate-[-8deg] z-20", d: 0 },
+  { src: "/images/covers/workshop.webp", cls: "left-28 top-0 rotate-[4deg] z-30", d: 0.15 },
+  { src: "/images/covers/research-journal.webp", cls: "left-52 top-32 rotate-[-4deg] z-20", d: 0.45 },
 ];
 
 export default function Hero() {
@@ -30,7 +30,7 @@ export default function Hero() {
             <span className="kicker">
               <Star className="h-3.5 w-3.5 fill-gold text-gold" />
               <AnimatedShinyText className="text-gold-deep">
-                Books, journals & a growing app
+                Practical books & guided business journals
               </AnimatedShinyText>
             </span>
           </motion.div>
@@ -61,7 +61,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-charcoal-muted"
           >
-            Running a business gives you plenty to think about. A customer raises a question.
+            For small-business owners and people building a business. A customer raises a question.
             A conversation changes your perspective. Mindful Pages gives you somewhere to
             bring those experiences together, understand what they mean, and decide what to do next.
           </motion.p>
@@ -107,7 +107,7 @@ export default function Hero() {
                 src={c.src}
                 alt=""
                 aria-hidden="true"
-                className="h-full w-full rounded-lg object-cover shadow-cover ring-1 ring-ink/10"
+                className="h-full w-full rounded-lg object-contain drop-shadow-xl"
               />
             </motion.div>
           ))}

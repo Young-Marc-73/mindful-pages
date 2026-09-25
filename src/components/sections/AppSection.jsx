@@ -66,6 +66,8 @@ export default function AppSection() {
             Business Bloom is the Mindful Pages app currently in development. We are building
             a guided space where you can explore a challenge, gather what you need to know,
             make sense of it, and develop a practical next step—with AI supporting the conversation.
+            The aim is to carry your research, decisions, and reflections forward, so the next
+            conversation can build on the work you have already done.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <ShimmerButton onClick={scrollToWaitlist}>

@@ -8,6 +8,15 @@
       name="description"
       content="Explore Strategic Thinking, the Business Journal, and Research Journal. Books coming soon from Mindful Pages, with the Business Bloom app in development."
     />
+    <link rel="canonical" href="https://mindfulpages.app/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Mindful Pages — Books for the business you’re building" />
+    <meta property="og:description" content="Explore Strategic Thinking, the Business Journal, and Research Journal. Practical books and guided journals for small-business owners. Coming soon." />
+    <meta property="og:url" content="https://mindfulpages.app/" />
+    <meta property="og:image" content="https://mindfulpages.app/images/mindful-pages-share.jpg" />
+    <meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Mindful Pages books and journals for small-business owners" />
+    <meta name="twitter:card" content="summary_large_image" />
     <title>Mindful Pages — Books, Journals & Business Bloom</title>
 
     <!-- Fonts: Fraunces (elegant serif display) + Inter (clean modern sans) -->
@@ -34,6 +43,16 @@
       <input type="text" name="bot-field" />
     </form>
 
+    <form name="book-updates" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+      <input name="form-name" value="book-updates" type="hidden" />
+      <input name="name" /><input name="email" type="email" />
+      <input name="book-updates" /><input name="app-updates" /><input name="bot-field" />
+    </form>
+    <form name="reader-contact" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+      <input name="form-name" value="reader-contact" type="hidden" />
+      <input name="name" /><input name="email" type="email" />
+      <input name="subject" /><textarea name="message"></textarea><input name="bot-field" />
+    </form>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

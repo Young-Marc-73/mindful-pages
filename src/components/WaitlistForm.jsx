@@ -197,7 +197,7 @@ export default function WaitlistForm() {
               </ShimmerButton>
               <p id="wl-reassure" className="text-xs leading-relaxed text-cream-soft/55">
                 Be first in line for early access.
-                <br className="hidden sm:block" /> No spam — just a heads-up when it's ready.
+                <br className="hidden sm:block" /> App early-access news. <a href="#privacy" className="underline">Privacy</a> · <a href="#contact" className="underline">Stop updates</a>
               </p>
             </div>
           </motion.form>

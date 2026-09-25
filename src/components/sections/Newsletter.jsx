@@ -9,7 +9,7 @@ export default function Newsletter() {
           <Quill className="mx-auto mb-5 h-10 w-10" animate={false} />
           <h2 className="font-serif text-3xl font-semibold text-ink sm:text-4xl">Start where you are.</h2>
           <p className="mx-auto mt-5 max-w-xl leading-relaxed text-charcoal-muted">You may have a question to investigate, a decision to make, or an experience you want to understand. Start there. Mindful Pages gives that work a place—and gives you something to return to as you learn.</p>
-          <a href="#journals" className="btn-gold mt-7">Explore the books</a>
+          <a href="#book-updates" className="btn-gold mt-7">Get book release updates</a>
         </Reveal>
       </div>
     </section>

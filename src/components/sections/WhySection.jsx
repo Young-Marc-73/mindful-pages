@@ -1,26 +1,10 @@
 import { PenLine, Tag, Target, Truck } from "lucide-react";
 import { BentoGrid, BentoCard } from "../magicui/BentoGrid";
-import Marquee from "../magicui/Marquee";
 import Reveal from "../motion/Reveal";
-import { journals } from "../../data/journals";
-import CoverArt from "../brand/CoverArt";
-
-// Background: a soft drifting mini-cover marquee for the "niche" card
-const MiniCovers = () => (
-  <Marquee className="absolute top-6 [--duration:30s] opacity-70 [mask-image:linear-gradient(to_top,transparent,white_40%)]">
-    {journals.slice(0, 7).map((j) => (
-      <div key={j.id} className="w-16 shrink-0">
-        <div className="overflow-hidden rounded shadow-soft ring-1 ring-ink/10">
-          <CoverArt journal={j} />
-        </div>
-      </div>
-    ))}
-  </Marquee>
-);
 
 export default function WhySection() {
   return (
-    <section id="about" className="relative py-24 sm:py-28">
+    <section id="why" className="relative py-24 sm:py-28">
       <div className="container-page">
         <Reveal className="mx-auto max-w-2xl text-center">
           <span className="kicker mb-5">Why Mindful Pages</span>
@@ -67,7 +51,7 @@ export default function WhySection() {
               description="Bring research, experience, and decisions together so you can see how the parts of your business connect."
               href="#journals"
               cta="Find yours"
-              background={<MiniCovers />}
+              background={<div className="absolute inset-0 bg-sage/10" />}
             />
 
             {/* Fast / POD — wide */}

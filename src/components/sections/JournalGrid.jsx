@@ -1,4 +1,5 @@
 import Reveal, { Stagger } from "../motion/Reveal";
+import BookGuide from "./BookGuide";
 import JournalCard from "../JournalCard";
 import { journals } from "../../data/journals";
 
@@ -19,6 +20,7 @@ export default function JournalGrid() {
           </p>
         </Reveal>
 
+        <BookGuide />
         <Stagger
           className="mt-14 grid gap-6 sm:grid-cols-2 xl:grid-cols-4"
           stagger={0.08}
