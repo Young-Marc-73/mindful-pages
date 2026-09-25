@@ -61,15 +61,26 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-charcoal-muted"
           >
-            For small-business owners and people building a business. A customer raises a question.
-            A conversation changes your perspective. Mindful Pages gives you somewhere to
-            bring those experiences together, understand what they mean, and decide what to do next.
+            Most small-business owners carry the thinking work of an entire company
+            inside their own head. There is nowhere solid to put it, so important
+            observations, questions, and decisions stay half-formed or disappear.
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.28 }}
+            className="mt-4 max-w-xl text-pretty text-lg leading-relaxed text-charcoal-muted"
+          >
+            Mindful Pages gives that thinking a clear place and a repeatable method
+            so you can move from scattered information to real understanding to a
+            practical next step.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.32 }}
+            transition={{ duration: 0.7, delay: 0.36 }}
             className="mt-9 flex flex-wrap items-center gap-3"
           >
             <a href="#journals" className="btn-primary group">
@@ -77,7 +88,7 @@ export default function Hero() {
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </a>
             <a href="#approach" className="btn-ghost">
-              See how they work
+              See how it works
             </a>
           </motion.div>
 

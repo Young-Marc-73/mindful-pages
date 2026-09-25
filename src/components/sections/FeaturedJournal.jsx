@@ -6,7 +6,7 @@ import DotPattern from "../magicui/DotPattern";
 import { featuredJournal } from "../../data/journals";
 
 const highlights = [
-  "Guided questions across seven connected areas of your business",
+  "Built around the seven business signals",
   "Space to connect evidence and experience",
   "A place to identify assumptions and unanswered questions",
   "A record you can revisit as your understanding grows",
@@ -65,7 +65,9 @@ export default function FeaturedJournal() {
                 <a href="#business-journal" className="btn-gold">
                   Explore the journal <ArrowRight className="h-4 w-4" />
                 </a>
-                <span className="text-cream-soft/70">Coming soon · {j.price} planned paperback price</span>
+                <span className="text-cream-soft/70">
+                  Coming soon · {j.price} planned paperback price
+                </span>
               </div>
             </Reveal>
           </div>

@@ -14,9 +14,8 @@ export default function JournalGrid() {
             <span className="italic text-gold-deep"> your work</span>
           </h2>
           <p className="mt-5 text-lg text-charcoal-muted">
-            Start with the work in front of you. Explore the Strategic Thinking books,
-            bring your business into focus, or preserve a question worth investigating.
-            All titles below are coming soon.
+            Start with the work in front of you. Choose the book or journal that supports
+            the thinking job you need to do right now. All titles below are coming soon.
           </p>
         </Reveal>
 
@@ -29,7 +28,10 @@ export default function JournalGrid() {
             <JournalCard key={j.id} journal={j} />
           ))}
         </Stagger>
-        <p className="mt-6 text-center text-sm text-charcoal-muted">Planned prices are in USD and will be reviewed before publication. Purchase links will appear when the books are available.</p>
+        <p className="mt-6 text-center text-sm text-charcoal-muted">
+          Planned prices are in USD and will be reviewed before publication. Purchase links
+          will appear when the books are available.
+        </p>
       </div>
     </section>
   );

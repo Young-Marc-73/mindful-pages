@@ -14,7 +14,6 @@ import ShimmerButton from "../magicui/ShimmerButton";
 import Reveal, { Stagger, staggerItem } from "../motion/Reveal";
 import WaitlistForm from "../WaitlistForm";
 
-// ── 3-pillar feature grid ──
 const pillars = [
   {
     icon: Boxes,
@@ -24,7 +23,7 @@ const pillars = [
   {
     icon: BrainCircuit,
     title: "A guided conversation",
-    body: "The aim is to help you explore a challenge, gather what you need to know, and develop a practical next step with AI supporting the conversation.",
+    body: "Explore a challenge, gather what you need to know, and develop a practical next step — with AI supporting the conversation.",
   },
   {
     icon: Sprout,
@@ -33,11 +32,22 @@ const pillars = [
   },
 ];
 
-// ── The experience we are building ──
 const steps = [
-  { icon: NotebookPen, label: "Explore", body: "Begin with a challenge, a question, or an experience you want to understand." },
-  { icon: FolderInput, label: "Connect", body: "Bring what you learn into a working picture of the situation." },
-  { icon: Download, label: "Act & learn", body: "Choose a practical next step, then return to what happened and what it taught you." },
+  {
+    icon: NotebookPen,
+    label: "Explore",
+    body: "Begin with a challenge, a question, or an experience you want to understand.",
+  },
+  {
+    icon: FolderInput,
+    label: "Connect",
+    body: "Bring what you learn into a working picture of the situation.",
+  },
+  {
+    icon: Download,
+    label: "Act & learn",
+    body: "Choose a practical next step, then return to what happened and what it taught you.",
+  },
 ];
 
 function scrollToWaitlist() {
@@ -49,7 +59,10 @@ function scrollToWaitlist() {
 
 export default function AppSection() {
   return (
-    <section id="app" className="relative isolate overflow-hidden bg-ink py-24 text-cream-soft sm:py-32">
+    <section
+      id="app"
+      className="relative isolate overflow-hidden bg-ink py-24 text-cream-soft sm:py-32"
+    >
       <AuroraBackground />
 
       <div className="container-page relative">
@@ -60,20 +73,32 @@ export default function AppSection() {
           </span>
           <h2 className="mt-6 text-balance font-serif text-4xl font-semibold leading-[1.1] text-cream-soft sm:text-5xl lg:text-[3.4rem]">
             Business Bloom
-            <span className="mt-3 block text-2xl font-normal italic text-gold-bright sm:text-3xl">A place to work through the business you’re building.</span>
+            <span className="mt-3 block text-2xl font-normal italic text-gold-bright sm:text-3xl">
+              A place to work through the business you’re building.
+            </span>
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-cream-soft/75">
-            Business Bloom is the Mindful Pages app currently in development. We are building
-            a guided space where you can explore a challenge, gather what you need to know,
-            make sense of it, and develop a practical next step—with AI supporting the conversation.
-            The aim is to carry your research, decisions, and reflections forward, so the next
-            conversation can build on the work you have already done.
+            Business Bloom takes the same system — Knowledge, Understanding, Wisdom, and
+            Evaluation — and makes it continuous.
+          </p>
+          <p className="mx-auto mt-4 max-w-2xl text-pretty text-lg leading-relaxed text-cream-soft/75">
+            It will read the business-related material on your computer, break it into dated
+            pieces, and place it inside the Business Journal structure so you can see the
+            journey you have already been on. It will help surface gaps in your understanding
+            — the things you do not yet know you need — and guide you toward the material and
+            decisions that fill those gaps.
+          </p>
+          <p className="mx-auto mt-4 max-w-2xl text-pretty text-lg leading-relaxed text-cream-soft/75">
+            You bring the experience, priorities, and judgment. Business Bloom is being
+            designed to help you work with them.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <ShimmerButton onClick={scrollToWaitlist}>
               Join the waitlist <ArrowRight className="h-4 w-4" />
             </ShimmerButton>
-            <span className="text-sm text-cream-soft/55">In development · Release date to be announced</span>
+            <span className="text-sm text-cream-soft/55">
+              In development · Release date to be announced
+            </span>
           </div>
         </Reveal>
 
@@ -106,11 +131,14 @@ export default function AppSection() {
           </Reveal>
 
           <div className="relative mt-10">
-            {/* connecting line */}
             <div className="absolute left-0 right-0 top-7 hidden h-px bg-gradient-to-r from-transparent via-cream-soft/20 to-transparent sm:block" />
             <Stagger className="grid gap-8 sm:grid-cols-3">
               {steps.map((s, i) => (
-                <motion.div key={s.label} variants={staggerItem} className="relative flex flex-col items-center text-center">
+                <motion.div
+                  key={s.label}
+                  variants={staggerItem}
+                  className="relative flex flex-col items-center text-center"
+                >
                   <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full bg-ink ring-1 ring-gold/40">
                     <s.icon className="h-6 w-6 text-gold-bright" strokeWidth={1.6} />
                     <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-gold text-[0.65rem] font-bold text-ink">
@@ -118,7 +146,9 @@ export default function AppSection() {
                     </span>
                   </div>
                   <h4 className="mt-4 font-serif text-xl text-cream-soft">{s.label}</h4>
-                  <p className="mt-1.5 max-w-[15rem] text-sm leading-relaxed text-cream-soft/65">{s.body}</p>
+                  <p className="mt-1.5 max-w-[15rem] text-sm leading-relaxed text-cream-soft/65">
+                    {s.body}
+                  </p>
                 </motion.div>
               ))}
             </Stagger>

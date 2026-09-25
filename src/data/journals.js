@@ -4,74 +4,79 @@
 // retain the existing site amounts pending Marc’s final publication price review.
 export const journals = [
   {
-    "id": "strategic-thinking",
-    "title": "Strategic Thinking: The Workshop",
-    "audience": "Volume One · A practical process",
-    "price": "$21.99",
-    "description": "Recognize the kind of thinking a situation requires, choose a useful method, and work from a question toward a responsible decision.",
-    "cover": "/images/covers/workshop.webp",
-    "details": [
-      "You don’t need the same thinking method for every situation. Sometimes you need a better question. Sometimes you need to compare options, examine an assumption, or understand why a plan didn’t work.",
-      "The Workshop introduces four connected movements: Knowledge, Understanding, Wisdom, and Evaluation. Learn to gather useful evidence, discover relationships, develop options, and build practical plans.",
-      "Guidance for working with AI helps you put the methods into practice while keeping the decisions in your hands. Begin with the question in front of you. Use what helps. Return when you need something else."
+    id: "strategic-thinking",
+    title: "Strategic Thinking: The Workshop",
+    audience: "Volume One · A practical process",
+    price: "$21.99",
+    description:
+      "A practical workshop for matching the right kind of thinking work to the situation in front of you — then carrying that work through to a clear decision and plan.",
+    cover: "/images/covers/workshop.webp",
+    details: [
+      "Most strategy advice tells you to think bigger. This book teaches you how to diagnose what kind of thinking the situation in front of you actually needs.",
+      "It is a workshop manual. You learn to recognize whether you need more knowledge, clearer understanding, a decision, or evaluation — then you select the right tools and move through the work without skipping steps.",
+      "Example: You are deciding whether to raise prices. The book shows you how to gather the right material, organize it so the real trade-offs become visible, form a practical plan, and later evaluate what happened.",
+      "Guidance for working with AI helps you put the methods into practice while keeping the decisions in your hands."
     ],
-    "status": "Coming soon",
-    "amazonUrl": null,
-    "series": "Business Series",
-    "preview": "/previews/workshop.html"
+    status: "Coming soon",
+    amazonUrl: null,
+    series: "Business Series",
+    preview: "/previews/workshop.html"
   },
   {
-    "id": "strategic-thinking-repository",
-    "title": "Strategic Thinking: The Repository",
-    "audience": "Volume Two · 166 thinking methods",
-    "price": "$29.99",
-    "description": "A working reference of 166 tools, methods, techniques, and frameworks. Find a method for the question in front of you—and see where its result can lead.",
-    "cover": "/images/covers/repository.webp",
-    "details": [
-      "Some situations need research. Others need comparison, a different perspective, or a way to test what you believe. The Repository gives you a collection of methods to return to as the work changes.",
-      "Each entry explains what a method is for, when to use it, how to work through it, and what its output connects to next. Indexes help you find methods by thinking movement, desired output, or business situation.",
+    id: "strategic-thinking-repository",
+    title: "Strategic Thinking: The Repository",
+    audience: "Volume Two · 166 thinking methods",
+    price: "$29.99",
+    description:
+      "A working reference of 166 tools, methods, and frameworks. When you know what kind of thinking work a situation requires, this is where you find a specific method for that job.",
+    cover: "/images/covers/repository.webp",
+    details: [
+      "Each entry shows what the tool receives and what it produces, so you can see how it connects to the next step.",
+      "Indexes help you find methods by thinking movement, desired output, or business situation.",
       "Use it independently as a reference, or alongside The Workshop. Practical AI hand-offs help you ask for useful assistance while keeping responsibility and judgment with you."
     ],
-    "status": "Coming soon",
-    "amazonUrl": null,
-    "series": "Business Series",
-    "preview": "/previews/repository.html"
+    status: "Coming soon",
+    amazonUrl: null,
+    series: "Business Series",
+    preview: "/previews/repository.html"
   },
   {
-    "id": "business-journal",
-    "title": "Business Journal",
-    "audience": "Understanding your business",
-    "price": "$28.00",
-    "featured": true,
-    "description": "Bring the different parts of your business into focus. Guided questions help you connect what you have learned across seven areas, from purpose and customers to operations and money.",
-    "cover": "/images/covers/business-journal.webp",
-    "details": [
+    id: "business-journal",
+    title: "Business Journal",
+    audience: "Understanding your business",
+    price: "$28.00",
+    featured: true,
+    description:
+      "Built around the seven business signals. Instead of writing something once and putting it away, you return to the same signals as the business changes.",
+    cover: "/images/covers/business-journal.webp",
+    details: [
       "In a small business, you may be responsible for marketing, operations, sales, and the money. The conversations between those departments still happen. Often, they happen inside your head. The Business Journal gives those conversations somewhere to go.",
-      "Guided explanations and questions help you examine seven connected areas: Purpose and Direction, Customer and Need, Offer and Value, Market and Position, Reach and Sales, Operations and Capacity, and Money and Resilience.",
+      "Guided questions help you connect evidence, experience, and open questions across the seven business signals so your understanding stays current.",
       "Bring together what you have learned. Examine what you believe. Notice where the pieces agree, where they conflict, and what you still need to understand.",
-      "As the business changes, return to your entries and develop your thinking. Over time, you build a record of how your understanding grew—and what led you to change your mind."
+      "As the business changes, return to your entries and develop your thinking. Over time you build a record of how your understanding grew — and what led you to change your mind."
     ],
-    "status": "Coming soon",
-    "amazonUrl": null,
-    "series": "Business Series",
-    "preview": "/previews/business-journal.html"
+    status: "Coming soon",
+    amazonUrl: null,
+    series: "Business Series",
+    preview: "/previews/business-journal.html"
   },
   {
-    "id": "research",
-    "title": "Research Journal",
-    "audience": "Knowledge worth returning to",
-    "price": "$22.00",
-    "description": "Keep the question. Make time for the discovery. Preserve what you want to study, then use open research pages to follow the subject in your own way.",
-    "cover": "/images/covers/research-journal.webp",
-    "details": [
+    id: "research",
+    title: "Research Journal",
+    audience: "Knowledge worth returning to",
+    price: "$22.00",
+    description:
+      "A place to collect source material, notes, and investigation. Organized around the seven business signals so the information stays connected to real work instead of floating free.",
+    cover: "/images/covers/research-journal.webp",
+    details: [
       "You often notice something worth learning before you have time to study it. A recommended book. A customer’s observation. A question you can’t yet answer. The Research Journal gives that future learning a place to wait.",
-      "Use its Library to preserve subjects and sources you want to return to. When you are ready, move into open research pages and take notes without having to fit every thought into a box.",
-      "Guidance on making time to study and using AI as a research assistant helps you begin. The pages give you room to follow the subject wherever useful questions lead. Keep what you discover available for the next conversation, decision, or opportunity."
+      "Use it when you need to preserve a question worth investigating or keep research that should inform later decisions.",
+      "Guidance on making time to study and using AI as a research assistant helps you begin. Keep what you discover available for the next conversation, decision, or opportunity."
     ],
-    "status": "Coming soon",
-    "amazonUrl": null,
-    "series": "Business Series",
-    "preview": "/previews/research-journal.html"
+    status: "Coming soon",
+    amazonUrl: null,
+    series: "Business Series",
+    preview: "/previews/research-journal.html"
   }
 ];
 
