@@ -83,7 +83,7 @@ export default function Footer() {
           <p className="flex items-center gap-1.5">
             Made with care
             <span className="text-terracotta">·</span>
-            Books coming soon · Business Bloom in development
+            Workshop available now · Business Bloom in development
           </p>
         </div>
       </div>

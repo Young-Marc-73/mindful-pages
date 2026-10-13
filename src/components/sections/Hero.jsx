@@ -98,7 +98,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="mt-9 flex items-center gap-5 text-sm text-charcoal-muted"
           >
-            <span>Books coming soon · Business Bloom in development</span>
+            <span>Workshop available now · More books coming soon</span>
           </motion.div>
         </div>
 

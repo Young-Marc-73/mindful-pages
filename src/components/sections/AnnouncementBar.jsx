@@ -17,13 +17,13 @@ export default function AnnouncementBar({ onClose }) {
     >
       <div className="container-page flex h-full items-center justify-center gap-3 text-center text-xs sm:text-sm">
         <a
-          href="#book-updates"
+          href="#strategic-thinking"
           className="group inline-flex items-center gap-1.5 font-medium text-cream-soft/90 transition-colors hover:text-gold-bright"
         >
-          <span className="hidden sm:inline">Our first books are coming soon —</span>
-          <span className="sm:hidden">Books coming soon —</span>
+          <span className="hidden sm:inline">Strategic Thinking: Workshop is available —</span>
+          <span className="sm:hidden">Workshop available —</span>
           <span className="font-semibold text-gold-bright underline-offset-4 group-hover:underline">
-            get release updates
+            shop the book
           </span>
           <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
         </a>

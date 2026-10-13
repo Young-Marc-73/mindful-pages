@@ -5,9 +5,9 @@
 export const journals = [
   {
     id: "strategic-thinking",
-    title: "Strategic Thinking: The Workshop",
+    title: "Strategic Thinking: Workshop",
     audience: "Volume One · A practical process",
-    price: "$21.99",
+    price: "$26.99",
     description:
       "A practical workshop for matching the right kind of thinking work to the situation in front of you — then carrying that work through to a clear decision and plan.",
     cover: "/images/covers/workshop.webp",
@@ -17,7 +17,8 @@ export const journals = [
       "Example: You are deciding whether to raise prices. The book shows you how to gather the right material, organize it so the real trade-offs become visible, form a practical plan, and later evaluate what happened.",
       "Guidance for working with AI helps you put the methods into practice while keeping the decisions in your hands."
     ],
-    status: "Coming soon",
+    status: "Available now",
+    buyButtonId: "eadac7a4-0706-4e6e-84a4-f71bd8ae9d61",
     amazonUrl: null,
     series: "Business Series",
     preview: "/previews/workshop.html"

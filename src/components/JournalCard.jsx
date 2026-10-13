@@ -23,8 +23,9 @@ export default function JournalCard({ journal }) {
         </details>
         <a href={journal.preview} className="mt-4 text-sm font-semibold text-ink underline decoration-gold underline-offset-4">Look inside <span className="sr-only">{journal.title}</span></a>
         <a href={`#watch-${video.id}`} className="mt-3 text-sm font-semibold text-ink underline decoration-gold underline-offset-4">{video.label}</a>
-        <a href="#book-updates" className="mt-3 text-sm text-charcoal-muted underline underline-offset-4">Get release updates</a>
-        <p className="mt-auto pt-5 text-sm text-charcoal-muted"><span className="font-serif text-xl text-ink">{journal.price}</span> · planned paperback price</p>
+        {!journal.buyButtonId && <a href="#book-updates" className="mt-3 text-sm text-charcoal-muted underline underline-offset-4">Get release updates</a>}
+        <p className="mt-auto pt-5 text-sm text-charcoal-muted"><span className="font-serif text-xl text-ink">{journal.price}</span> · {journal.buyButtonId ? "paperback" : "planned paperback price"}</p>
+        {journal.buyButtonId && <div className="mt-4" aria-label={`Purchase ${journal.title}`}><lulu-buy-button buy-button-id={journal.buyButtonId} variant="button-only"></lulu-buy-button><p className="mt-2 text-xs text-charcoal-muted">Shipping and applicable tax calculated at checkout.</p></div>}
       </div>
     </motion.article>
   );

@@ -56,12 +56,12 @@ export default function WhySection() {
 
             {/* Fast / POD — wide */}
             <BentoCard
-              name="Books coming soon"
+              name="The Workshop is available"
               className="md:col-span-2"
               Icon={Truck}
-              description="Strategic Thinking and the Business Journal are our first planned releases. Amazon purchase links will appear when the books are published."
+              description="Start with Strategic Thinking: Workshop, now available in paperback. The Repository and guided journals are coming soon."
               href="#journals"
-              cta="See the upcoming titles"
+              cta="Explore the books"
               background={
                 <div className="absolute inset-0 bg-[radial-gradient(120%_120%_at_50%_120%,rgba(106,79,176,0.12),transparent_55%)]" />
               }
