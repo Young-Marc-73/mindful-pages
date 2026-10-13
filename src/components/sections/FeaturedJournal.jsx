@@ -65,6 +65,7 @@ export default function FeaturedJournal() {
                 <a href="#business-journal" className="btn-gold">
                   Explore the journal <ArrowRight className="h-4 w-4" />
                 </a>
+                <a href="#watch-understanding" className="text-sm font-semibold text-cream-soft underline decoration-gold-bright underline-offset-4">Watch the journal in use</a>
                 <span className="text-cream-soft/70">
                   Coming soon · {j.price} planned paperback price
                 </span>

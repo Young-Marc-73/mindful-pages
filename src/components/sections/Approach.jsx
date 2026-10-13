@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { Lightbulb, ListTree, CalendarCheck, RefreshCw } from "lucide-react";
 import Reveal, { Stagger, staggerItem } from "../motion/Reveal";
 
+import JournalVideos from "./JournalVideos";
+
 const steps = [
   {
     n: "01",
@@ -180,6 +182,8 @@ export default function Approach() {
             </div>
           </div>
         </Reveal>
+
+        <JournalVideos />
       </div>
     </section>
   );
