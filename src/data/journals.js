@@ -1,7 +1,5 @@
-// Pre-launch catalog. Activate purchase links only after each listing is published.
-// Planned prices: Workshop $21.99 / Repository $29.99 from the September 16,
-// 2026 KDP production package. Business Journal $28 / Research Journal $22
-// retain the existing site amounts pending Marc’s final publication price review.
+// Published books use their Lulu Buy Button prices.
+// Business Journal and Research Journal prices remain provisional.
 export const journals = [
   {
     id: "strategic-thinking",
@@ -27,7 +25,7 @@ export const journals = [
     id: "strategic-thinking-repository",
     title: "Strategic Thinking: The Repository",
     audience: "Volume Two · 166 thinking methods",
-    price: "$29.99",
+    price: "$34.99",
     description:
       "A working reference of 166 tools, methods, and frameworks. When you know what kind of thinking work a situation requires, this is where you find a specific method for that job.",
     cover: "/images/covers/repository.webp",
@@ -36,7 +34,8 @@ export const journals = [
       "Indexes help you find methods by thinking movement, desired output, or business situation.",
       "Use it independently as a reference, or alongside The Workshop. Practical AI hand-offs help you ask for useful assistance while keeping responsibility and judgment with you."
     ],
-    status: "Coming soon",
+    status: "Available now",
+    buyButtonId: "d76c4d15-cb19-4289-a3ec-5281965b99bc",
     amazonUrl: null,
     series: "Business Series",
     preview: "/previews/repository.html"
