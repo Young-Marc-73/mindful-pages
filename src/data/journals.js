@@ -1,5 +1,5 @@
 // Published books use their Lulu Buy Button prices.
-// Business Journal and Research Journal prices remain provisional.
+// Research Journal pricing remains provisional.
 export const journals = [
   {
     id: "strategic-thinking",
@@ -44,7 +44,7 @@ export const journals = [
     id: "business-journal",
     title: "Business Journal",
     audience: "Understanding your business",
-    price: "$28.00",
+    price: "$24.99",
     featured: true,
     description:
       "Built around the seven business signals. Instead of writing something once and putting it away, you return to the same signals as the business changes.",
@@ -55,7 +55,8 @@ export const journals = [
       "Bring together what you have learned. Examine what you believe. Notice where the pieces agree, where they conflict, and what you still need to understand.",
       "As the business changes, return to your entries and develop your thinking. Over time you build a record of how your understanding grew — and what led you to change your mind."
     ],
-    status: "Coming soon",
+    status: "Available now",
+    buyButtonId: "50bc931b-2a23-4d40-8708-7c8ff409a8c5",
     amazonUrl: null,
     series: "Business Series",
     preview: "/previews/business-journal.html"
