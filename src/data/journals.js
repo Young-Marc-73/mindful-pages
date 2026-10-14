@@ -1,5 +1,4 @@
 // Published books use their Lulu Buy Button prices.
-// Research Journal pricing remains provisional.
 export const journals = [
   {
     id: "strategic-thinking",
@@ -65,7 +64,7 @@ export const journals = [
     id: "research",
     title: "Research Journal",
     audience: "Knowledge worth returning to",
-    price: "$22.00",
+    price: "$21.99",
     description:
       "A place to collect source material, notes, and investigation. Organized around the seven business signals so the information stays connected to real work instead of floating free.",
     cover: "/images/covers/research-journal.webp",
@@ -74,7 +73,8 @@ export const journals = [
       "Use it when you need to preserve a question worth investigating or keep research that should inform later decisions.",
       "Guidance on making time to study and using AI as a research assistant helps you begin. Keep what you discover available for the next conversation, decision, or opportunity."
     ],
-    status: "Coming soon",
+    status: "Available now",
+    buyButtonId: "f9072c56-4083-4c91-89fd-b17439e6f50f",
     amazonUrl: null,
     series: "Business Series",
     preview: "/previews/research-journal.html"
