@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, PlayCircle } from "lucide-react";
+import TrackedVideo, { trackVideoEvent } from "../TrackedVideo";
 
 const videos = [
   {
@@ -93,16 +94,16 @@ export default function JournalVideos() {
         <h4 className="font-serif text-2xl text-ink">{current.title}</h4>
         <p className="mt-2 max-w-3xl text-sm leading-relaxed text-charcoal-muted">{current.description}</p>
         <div className="mt-5 overflow-hidden rounded-2xl border border-ink/10 bg-ink">
-          <video key={current.id} controls playsInline preload="none" poster={current.poster}
+          <TrackedVideo key={current.id} video={current} controls playsInline preload="none" poster={current.poster}
             src={current.src} aria-label={`${current.stage}: ${current.title}`} onError={() => setFailed(true)}
             className="block aspect-video w-full">
             Your browser does not support this video. <a href={current.src}>Download the video</a>.
-          </video>
+          </TrackedVideo>
         </div>
         {failed && <p role="status" className="mt-3 text-sm text-charcoal-muted">The video could not load. Please try <a href={current.src} className="underline">opening the video directly</a>.</p>}
         <p className="mt-4 text-sm font-medium text-ink">{current.books}</p>
         <div className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-3">
-          {current.links.map((link) => <a key={link.href} href={link.href} className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink underline decoration-gold underline-offset-4">{link.label}<ArrowRight className="h-4 w-4" aria-hidden="true" /></a>)}
+          {current.links.map((link) => <a key={link.href} href={link.href} onClick={() => trackVideoEvent("video_book_link_click", current, { link_target: link.href })} className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink underline decoration-gold underline-offset-4">{link.label}<ArrowRight className="h-4 w-4" aria-hidden="true" /></a>)}
           <a href={current.transcript} className="text-sm text-charcoal-muted underline underline-offset-4">Read the transcript</a>
         </div>
       </div>
