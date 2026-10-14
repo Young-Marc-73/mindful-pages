@@ -1,83 +1,81 @@
-// Published books use their Lulu Buy Button prices.
+// Published cover images and copy follow the final Lulu cover PDFs.
 export const journals = [
   {
-    id: "strategic-thinking",
-    title: "Strategic Thinking: Workshop",
-    audience: "Volume One · A practical process",
-    price: "$26.99",
-    description:
-      "A practical workshop for matching the right kind of thinking work to the situation in front of you — then carrying that work through to a clear decision and plan.",
-    cover: "/images/covers/workshop.webp",
-    details: [
-      "Most strategy advice tells you to think bigger. This book teaches you how to diagnose what kind of thinking the situation in front of you actually needs.",
-      "It is a workshop manual. You learn to recognize whether you need more knowledge, clearer understanding, a decision, or evaluation — then you select the right tools and move through the work without skipping steps.",
-      "Example: You are deciding whether to raise prices. The book shows you how to gather the right material, organize it so the real trade-offs become visible, form a practical plan, and later evaluate what happened.",
-      "Guidance for working with AI helps you put the methods into practice while keeping the decisions in your hands."
+    "id": "strategic-thinking",
+    "title": "Strategic Thinking: The Workshop",
+    "audience": "Volume One · A practical process",
+    "price": "$26.99",
+    "description": "Think through the decision. Learn to recognize the thinking work a situation requires, then move from questions and evidence to understanding, judgment and action.",
+    "cover": "/images/covers/workshop-published.webp",
+    "details": [
+      "Better decisions begin with knowing what kind of thinking the situation requires. The Workshop gives business owners and entrepreneurs a practical process for identifying that work and carrying it forward.",
+      "Learn to gather evidence that can support a decision, turn facts into patterns and options, and examine assumptions, priorities, risks and tradeoffs.",
+      "Guidance for using AI helps you work through the process while keeping human judgment in charge. The examples focus on business, and the process also applies to personal and professional questions.",
+      "Continue with The Repository when you want the full collection of 166 tools, methods, techniques and frameworks to support the thinking job in front of you."
     ],
-    status: "Available now",
-    buyButtonId: "eadac7a4-0706-4e6e-84a4-f71bd8ae9d61",
-    amazonUrl: null,
-    series: "Business Series",
-    preview: "/previews/workshop.html"
+    "status": "Available now",
+    "buyButtonId": "eadac7a4-0706-4e6e-84a4-f71bd8ae9d61",
+    "amazonUrl": null,
+    "series": "Business Series",
+    "preview": "/previews/workshop.html"
   },
   {
-    id: "strategic-thinking-repository",
-    title: "Strategic Thinking: The Repository",
-    audience: "Volume Two · 166 thinking methods",
-    price: "$34.99",
-    description:
-      "A working reference of 166 tools, methods, and frameworks. When you know what kind of thinking work a situation requires, this is where you find a specific method for that job.",
-    cover: "/images/covers/repository.webp",
-    details: [
-      "Each entry shows what the tool receives and what it produces, so you can see how it connects to the next step.",
-      "Indexes help you find methods by thinking movement, desired output, or business situation.",
-      "Use it independently as a reference, or alongside The Workshop. Practical AI hand-offs help you ask for useful assistance while keeping responsibility and judgment with you."
+    "id": "strategic-thinking-repository",
+    "title": "Strategic Thinking: The Repository",
+    "audience": "Volume Two · 166 thinking methods",
+    "price": "$34.99",
+    "description": "The right tool can change the question you ask, what you notice and the decision you make. Find a useful method in this working reference of 166 tools, methods, techniques and frameworks.",
+    "cover": "/images/covers/repository-published.webp",
+    "details": [
+      "Find a method by thinking job, desired output or business situation. Compare approaches before committing your time and attention.",
+      "Each entry explains what the tool is for, shows how to use it and identifies what its output connects to next. Steps, prompts, cautions and examples help you put the method to work.",
+      "Practical AI hand-offs help you ask for useful assistance while keeping human judgment in charge. Build a connected path through the decision instead of losing track of what comes next.",
+      "Use The Repository independently as a reference or pair it with The Workshop for the teaching process. The examples focus on business; you can change the subject and keep the discipline."
     ],
-    status: "Available now",
-    buyButtonId: "d76c4d15-cb19-4289-a3ec-5281965b99bc",
-    amazonUrl: null,
-    series: "Business Series",
-    preview: "/previews/repository.html"
+    "status": "Available now",
+    "buyButtonId": "d76c4d15-cb19-4289-a3ec-5281965b99bc",
+    "amazonUrl": null,
+    "series": "Business Series",
+    "preview": "/previews/repository.html"
   },
   {
-    id: "business-journal",
-    title: "Business Journal",
-    audience: "Understanding your business",
-    price: "$24.99",
-    featured: true,
-    description:
-      "Built around the seven business signals. Instead of writing something once and putting it away, you return to the same signals as the business changes.",
-    cover: "/images/covers/business-journal.webp",
-    details: [
-      "In a small business, you may be responsible for marketing, operations, sales, and the money. The conversations between those departments still happen. Often, they happen inside your head. The Business Journal gives those conversations somewhere to go.",
-      "Guided questions help you connect evidence, experience, and open questions across the seven business signals so your understanding stays current.",
-      "Bring together what you have learned. Examine what you believe. Notice where the pieces agree, where they conflict, and what you still need to understand.",
-      "As the business changes, return to your entries and develop your thinking. Over time you build a record of how your understanding grew — and what led you to change your mind."
+    "id": "business-journal",
+    "title": "Business Journal",
+    "audience": "Understanding your business",
+    "price": "$24.99",
+    "featured": true,
+    "description": "Your business is changing every week. Keep a living notebook of what you know, what you are learning and how the pieces connect across the Seven Business Signals.",
+    "cover": "/images/covers/business-journal-published.webp",
+    "details": [
+      "In a small business, you wear every hat. The conversations between departments often happen inside your head. The Business Journal gives those conversations a place to be recorded and brought together.",
+      "Work through Purpose and Direction, Customer and Need, Offer and Value, Market and Position, Reach and Sales, Operations and Capacity, and Money and Resilience.",
+      "Clear guidance and detailed questions help you see gaps in your knowledge. Use the writing pages to capture observations, organize what you are learning and develop a clearer picture of your business.",
+      "Return as the business changes and preserve how your understanding developed. Use the journal on its own or alongside Strategic Thinking and the rest of Mindful Pages. Get organized. Stay focused. See the big picture."
     ],
-    status: "Available now",
-    buyButtonId: "50bc931b-2a23-4d40-8708-7c8ff409a8c5",
-    amazonUrl: null,
-    series: "Business Series",
-    preview: "/previews/business-journal.html"
+    "status": "Available now",
+    "buyButtonId": "50bc931b-2a23-4d40-8708-7c8ff409a8c5",
+    "amazonUrl": null,
+    "series": "Business Series",
+    "preview": "/previews/business-journal.html"
   },
   {
-    id: "research",
-    title: "Research Journal",
-    audience: "Knowledge worth returning to",
-    price: "$21.99",
-    description:
-      "A place to collect source material, notes, and investigation. Organized around the seven business signals so the information stays connected to real work instead of floating free.",
-    cover: "/images/covers/research-journal.webp",
-    details: [
-      "You often notice something worth learning before you have time to study it. A recommended book. A customer’s observation. A question you can’t yet answer. The Research Journal gives that future learning a place to wait.",
-      "Use it when you need to preserve a question worth investigating or keep research that should inform later decisions.",
-      "Guidance on making time to study and using AI as a research assistant helps you begin. Keep what you discover available for the next conversation, decision, or opportunity."
+    "id": "research",
+    "title": "Research Journal",
+    "audience": "Knowledge worth returning to",
+    "price": "$21.99",
+    "description": "You notice questions long before there is time to answer them. Save what deserves study, begin when the time is right and preserve what you discover.",
+    "cover": "/images/covers/research-journal-published.webp",
+    "details": [
+      "A customer says something worth remembering. Someone recommends a book. You discover a subject you need to understand better. The Research Journal gives that future learning somewhere to wait.",
+      "A Library organized around the Seven Business Signals helps you keep subjects and sources for later study. Guidance for making time to study helps you turn a saved question into a useful learning session.",
+      "Practical AI research instructions and quick-reference pages keep sources, search terms and quotations available. Capture notes from books, webinars, meetings and seminars as the information arrives.",
+      "Return when you are ready to connect what you have learned or study a subject in greater depth. Use Strategic Thinking when you need a method for logic, reasoning or organization."
     ],
-    status: "Available now",
-    buyButtonId: "f9072c56-4083-4c91-89fd-b17439e6f50f",
-    amazonUrl: null,
-    series: "Business Series",
-    preview: "/previews/research-journal.html"
+    "status": "Available now",
+    "buyButtonId": "f9072c56-4083-4c91-89fd-b17439e6f50f",
+    "amazonUrl": null,
+    "series": "Business Series",
+    "preview": "/previews/research-journal.html"
   }
 ];
 

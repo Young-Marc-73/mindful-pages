@@ -20,7 +20,7 @@ export default function AnnouncementBar({ onClose }) {
           href="#strategic-thinking"
           className="group inline-flex items-center gap-1.5 font-medium text-cream-soft/90 transition-colors hover:text-gold-bright"
         >
-          <span className="hidden sm:inline">Strategic Thinking: Workshop is available —</span>
+          <span className="hidden sm:inline">Strategic Thinking: The Workshop is available —</span>
           <span className="sm:hidden">Workshop available —</span>
           <span className="font-semibold text-gold-bright underline-offset-4 group-hover:underline">
             shop the book

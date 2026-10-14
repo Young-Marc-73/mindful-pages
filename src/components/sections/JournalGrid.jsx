@@ -15,7 +15,7 @@ export default function JournalGrid() {
           </h2>
           <p className="mt-5 text-lg text-charcoal-muted">
             Start with the work in front of you. Choose the book or journal that supports
-            the thinking job you need to do right now. Strategic Thinking: Workshop is available now. More titles are coming soon.
+            the thinking job you need to do right now. The Workshop, Repository, Business Journal and Research Journal are available now.
           </p>
         </Reveal>
 
@@ -29,7 +29,7 @@ export default function JournalGrid() {
           ))}
         </Stagger>
         <p className="mt-6 text-center text-sm text-charcoal-muted">
-          Prices are in USD. Upcoming titles show planned prices. Shipping and applicable tax
+          Prices are in USD. Shipping and applicable tax
           are calculated at checkout.
         </p>
       </div>

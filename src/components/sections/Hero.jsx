@@ -7,9 +7,9 @@ import { cn } from "../../lib/utils";
 
 // A few real covers float in the hero collage
 const floatCovers = [
-  { src: "/images/covers/business-journal.webp", cls: "left-0 top-6 rotate-[-8deg] z-20", d: 0 },
-  { src: "/images/covers/workshop.webp", cls: "left-28 top-0 rotate-[4deg] z-30", d: 0.15 },
-  { src: "/images/covers/research-journal.webp", cls: "left-52 top-32 rotate-[-4deg] z-20", d: 0.45 },
+  { src: "/images/covers/business-journal-published.webp", cls: "left-0 top-6 rotate-[-8deg] z-20", d: 0 },
+  { src: "/images/covers/workshop-published.webp", cls: "left-28 top-0 rotate-[4deg] z-30", d: 0.15 },
+  { src: "/images/covers/research-journal-published.webp", cls: "left-52 top-32 rotate-[-4deg] z-20", d: 0.45 },
 ];
 
 export default function Hero() {
@@ -98,7 +98,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="mt-9 flex items-center gap-5 text-sm text-charcoal-muted"
           >
-            <span>Workshop available now · More books coming soon</span>
+            <span>Four books available now · More titles in development</span>
           </motion.div>
         </div>
 

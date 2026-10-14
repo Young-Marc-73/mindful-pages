@@ -56,10 +56,10 @@ export default function WhySection() {
 
             {/* Fast / POD — wide */}
             <BentoCard
-              name="The Workshop is available"
+              name="Four books are available"
               className="md:col-span-2"
               Icon={Truck}
-              description="Start with Strategic Thinking: Workshop, now available in paperback. The Repository and guided journals are coming soon."
+              description="Choose the Workshop, Repository, Business Journal or Research Journal for the thinking work in front of you. All four are available in paperback."
               href="#journals"
               cta="Explore the books"
               background={
