@@ -5,10 +5,10 @@ import Quill from "../brand/Quill";
 import { cn } from "../../lib/utils";
 
 const links = [
-  { label: "Books & Journals", href: "#journals" },
-  { label: "Our Approach", href: "#approach" },
-  { label: "Business Bloom", href: "#app" },
-  { label: "About", href: "#about" },
+  { label: "Books & Journals", href: "/books" },
+  { label: "Our Approach", href: "/approach" },
+  { label: "Apps", href: "/apps" },
+  { label: "About", href: "/about-the-author" },
 ];
 
 export default function Navbar({ barVisible = false }) {
@@ -41,7 +41,7 @@ export default function Navbar({ barVisible = false }) {
         )}
       >
         {/* Brand */}
-        <a href="#top" className="flex items-center gap-2.5" aria-label="Mindful Pages — home">
+        <a href="/" className="flex items-center gap-2.5" aria-label="Mindful Pages — home">
           <Quill className="h-8 w-8" animate={false} />
           <span className="font-serif text-lg font-semibold tracking-brand text-ink">
             Mindful Pages
@@ -64,7 +64,7 @@ export default function Navbar({ barVisible = false }) {
         {/* CTA */}
         <div className="flex items-center gap-2">
           <a
-            href="#journals"
+            href="/books"
             className="btn-gold hidden px-5 py-2.5 text-sm sm:inline-flex"
           >
             <ShoppingBag className="h-4 w-4" />
@@ -101,7 +101,7 @@ export default function Navbar({ barVisible = false }) {
                 {l.label}
               </a>
             ))}
-            <a href="#journals" onClick={() => setOpen(false)} className="btn-gold mt-1 w-full">
+            <a href="/books" onClick={() => setOpen(false)} className="btn-gold mt-1 w-full">
               <ShoppingBag className="h-4 w-4" /> Explore the books
             </a>
           </motion.div>
