@@ -31,13 +31,13 @@ export default function ReaderForm({ kind = "books" }) {
       <label className="block text-sm font-medium text-ink">Email address<input name="email" type="email" autoComplete="email" required className="reader-input" /></label>
     </div>
     {contact ? <>
-      <label className="block text-sm font-medium text-ink">Subject<select name="subject" className="reader-input"><option>Book question</option><option>Business Bloom question</option><option>Stop release emails</option><option>Privacy or deletion request</option><option>Other</option></select></label>
+      <label className="block text-sm font-medium text-ink">Subject<select name="subject" className="reader-input"><option>Book question</option><option>Business Bloom question</option><option>ReadyDesk question</option><option>ScopeTrack question</option><option>Stop release emails</option><option>Privacy or deletion request</option><option>Other</option></select></label>
       <label className="block text-sm font-medium text-ink">Your message<textarea name="message" required rows={4} maxLength={5000} className="reader-input" /></label>
     </> : <>
       <input type="hidden" name="book-updates" value="yes" />
       <label className="flex items-start gap-3 text-sm text-charcoal-muted"><input type="checkbox" name="app-updates" value="yes" className="mt-1 h-4 w-4 accent-[#15182b]" />Also let me know when Business Bloom early access is available.</label>
     </>}
-    <p className="text-sm leading-relaxed text-charcoal-muted">{contact ? "We use these details to respond to your request. Please don’t include sensitive business or personal information." : "By signing up, you’re asking for book release emails. To stop them, use the contact form below."} <a href="#privacy" className="underline underline-offset-2">How we use your information</a></p>
+    <p className="text-sm leading-relaxed text-charcoal-muted">{contact ? "We use these details to respond to your request. Please don’t include sensitive business or personal information." : "By signing up, you’re asking for book release emails. To stop them, use the contact form below."} <a href="/#privacy" className="underline underline-offset-2">How we use your information</a></p>
     {error && <p role="alert" className="text-sm text-red-800">{error}</p>}
     <button type="submit" disabled={status === "sending"} className="btn-gold disabled:opacity-60">{status === "sending" ? "Sending…" : contact ? "Send message" : "Notify me when the books are available"}</button>
   </form>;
