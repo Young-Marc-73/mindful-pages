@@ -12,6 +12,7 @@ export default function AboutMarc() {
             <p>
               I’m Marc Young. I’ve been an entrepreneur since I was twelve.
             </p>
+            <p>I completed a business plan for an SBA loan expecting it to help me run the business. Being told that its purpose was finished once the loan was approved stayed with me. I wanted the thinking to keep helping as the business changed.</p>
             <p>
               Early on I developed a simple method for thinking through business problems:
               three legal pads and a 3×5 card. One pad for collecting information, one for
@@ -37,6 +38,7 @@ export default function AboutMarc() {
               I built this because the thinking work of a small business is real work — and
               it deserves better tools than scraps of paper and half-remembered conversations.
             </p>
+            <a href="/about-the-author" className="btn-ghost">Read my story</a>
           </div>
         </div>
         <div
