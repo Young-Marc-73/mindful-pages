@@ -10,7 +10,7 @@ const videos = [
     books: "Research Journal · Team Management Journal",
     src: "/videos/knowledge.mp4", poster: "/videos/knowledge-poster.webp",
     transcript: "/videos/knowledge-transcript.txt",
-    links: [{ href: "#research", label: "Explore the Research Journal" }],
+    links: [{ href: "/journals/research-journal", label: "Explore the Research Journal" }],
   },
   {
     id: "understanding", stage: "Understanding", duration: "4:01",
@@ -19,7 +19,7 @@ const videos = [
     books: "Business Journal · Strategic Thinking: The Workshop & The Repository",
     src: "/videos/understanding.mp4", poster: "/videos/understanding-poster.webp",
     transcript: "/videos/understanding-transcript.txt",
-    links: [{ href: "#business-journal", label: "Explore the Business Journal" }, { href: "#strategic-thinking", label: "Explore Strategic Thinking" }],
+    links: [{ href: "/journals/business-journal", label: "Explore the Business Journal" }, { href: "/books/strategic-thinking-workshop", label: "Explore Strategic Thinking" }],
   },
   {
     id: "wisdom", stage: "Wisdom", duration: "3:52",
@@ -28,12 +28,12 @@ const videos = [
     books: "Business Planner · Business Diary",
     src: "/videos/wisdom.mp4", poster: "/videos/wisdom-poster.webp",
     transcript: "/videos/wisdom-transcript.txt",
-    links: [{ href: "#book-updates", label: "Get book release updates" }],
+    links: [{ href: "/#book-updates", label: "Get book release updates" }],
   },
 ];
 
 function selectedFromHash() {
-  const id = window.location.hash.replace("#watch-", "");
+  const id = (typeof window === "undefined" ? "" : window.location.hash).replace("#watch-", "");
   return videos.some((v) => v.id === id) ? id : "knowledge";
 }
 
