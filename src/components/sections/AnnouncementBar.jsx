@@ -17,7 +17,7 @@ export default function AnnouncementBar({ onClose }) {
     >
       <div className="container-page flex h-full items-center justify-center gap-3 text-center text-xs sm:text-sm">
         <a
-          href="#strategic-thinking"
+          href="/books/strategic-thinking-workshop"
           className="group inline-flex items-center gap-1.5 font-medium text-cream-soft/90 transition-colors hover:text-gold-bright"
         >
           <span className="hidden sm:inline">Strategic Thinking: The Workshop is available —</span>

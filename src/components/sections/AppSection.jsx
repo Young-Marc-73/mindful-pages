@@ -93,9 +93,9 @@ export default function AppSection() {
             designed to help you work with them.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <ShimmerButton onClick={scrollToWaitlist}>
-              Join the waitlist <ArrowRight className="h-4 w-4" />
-            </ShimmerButton>
+            <a href="/apps/business-bloom" className="btn-gold">
+              Explore Business Bloom <ArrowRight className="h-4 w-4" />
+            </a>
             <span className="text-sm text-cream-soft/55">
               In development · Release date to be announced
             </span>

@@ -3,15 +3,16 @@ import Quill from "../brand/Quill";
 
 const nav = {
   Explore: [
-    { label: "Books & Journals", href: "#journals" },
-    { label: "Our Approach", href: "#approach" },
-    { label: "Business Bloom", href: "#app" },
-    { label: "About Marc", href: "#about" },
+    { label: "Books & Journals", href: "/books" },
+    { label: "Our Approach", href: "/approach" },
+    { label: "Apps", href: "/apps" },
+    { label: "About Marc", href: "/about-the-author" },
   ],
-  "Coming soon": [
-    { label: "Strategic Thinking", href: "#strategic-thinking" },
-    { label: "Business Journal", href: "#journals" },
-    { label: "Research Journal", href: "#research" },
+  "Available books": [
+    { label: "The Workshop", href: "/books/strategic-thinking-workshop" },
+    { label: "The Repository", href: "/books/strategic-thinking-repository" },
+    { label: "Business Journal", href: "/journals/business-journal" },
+    { label: "Research Journal", href: "/journals/research-journal" },
   ],
 };
 
@@ -23,7 +24,7 @@ export default function Footer() {
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           {/* Brand */}
           <div>
-            <a href="#top" className="flex items-center gap-2.5">
+            <a href="/" className="flex items-center gap-2.5">
               <Quill className="h-9 w-9" animate={false} />
               <span className="font-serif text-xl font-semibold tracking-brand text-ink">
                 Mindful Pages
@@ -61,18 +62,18 @@ export default function Footer() {
           <div>
             <h4 className="font-serif text-base text-ink">Explore Mindful Pages</h4>
             <a
-              href="#journals"
+              href="/books"
               className="btn-gold mt-4 w-full justify-center px-4 py-2.5 text-sm"
             >
               <ShoppingBag className="h-4 w-4" /> Explore the books
             </a>
             <a
-              href="#app"
+              href="/apps/business-bloom"
               className="btn-ghost mt-3 w-full justify-center px-4 py-2.5 text-sm"
             >
               <Sparkles className="h-4 w-4" /> Join the app waitlist
             </a>
-            <div className="mt-4 flex flex-wrap gap-4 text-sm"><a href="#contact" className="underline">Contact Marc</a><a href="#privacy" className="underline">Privacy</a></div>
+            <div className="mt-4 flex flex-wrap gap-4 text-sm"><a href="/about-the-author#contact" className="underline">Contact Marc</a><a href="/#privacy" className="underline">Privacy</a></div>
           </div>
         </div>
 
