@@ -100,3 +100,6 @@
 }
 section[id], div[id] { scroll-margin-top: 9rem; }
 :focus-visible { outline: 2px solid #8a6410; outline-offset: 4px; }
+
+.skip-link { position: fixed; top: -100px; left: 1rem; z-index: 100; background: white; color: #15182b; padding: 1rem; }
+.skip-link:focus { top: 1rem; }
