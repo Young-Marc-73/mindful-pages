@@ -14,6 +14,7 @@ import BookUpdates from "./components/sections/BookUpdates";
 import AboutMarc from "./components/sections/AboutMarc";
 import Privacy from "./components/sections/Privacy";
 import Footer from "./components/sections/Footer";
+import ResourcePage, { resources } from "./pages/Resources";
 
 import { journals } from "./data/journals";
 import { apps, bookPaths } from "./data/pages";
@@ -46,7 +47,7 @@ export default function App({ path = typeof window === "undefined" ? "/" : windo
         <section className="container-page py-16"><div className="mb-8"><h2 className="font-serif text-4xl">Tools for your business</h2><p className="mt-4 text-charcoal-muted">Explore the apps and their current availability.</p></div><AppsGrid /></section>
         <AboutMarc />
         <Newsletter />
-        </> : journal ? <BookPage journal={journal}/> : app ? <AppPage app={app}/> : path === "/books" ? <BooksPage/> : path === "/apps" ? <AppsPage/> : path === "/about-the-author" ? <AuthorPage/> : path === "/approach" ? <><div className="container-page"><Intro label="The method" title="Knowledge. Understanding. Wisdom. Evaluation."><p>One repeatable way to gather what matters, understand it, act and learn.</p></Intro></div><Approach/></> : <div className="container-page pb-20"><Intro label="Page not found" title="Let’s find your next page."><a href="/books" className="btn-primary">Explore the books</a></Intro></div>}
+        </> : resources[path] ? <ResourcePage resource={resources[path]}/> : journal ? <BookPage journal={journal}/> : app ? <AppPage app={app}/> : path === "/books" ? <BooksPage/> : path === "/apps" ? <AppsPage/> : path === "/about-the-author" ? <AuthorPage/> : path === "/approach" ? <><div className="container-page"><Intro label="The method" title="Knowledge. Understanding. Wisdom. Evaluation."><p>One repeatable way to gather what matters, understand it, act and learn.</p></Intro></div><Approach/></> : <div className="container-page pb-20"><Intro label="Page not found" title="Let’s find your next page."><a href="/books" className="btn-primary">Explore the books</a></Intro></div>}
         <Privacy />
       </main>
       <Footer />
