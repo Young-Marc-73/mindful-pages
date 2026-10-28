@@ -16,3 +16,11 @@ yarn-debug.log*
 yarn-error.log*
 
 .prerender/
+
+# Paid product source and local credentials must never enter the public repo
+.env
+.env.*
+!.env.example
+.netlify/
+private-downloads/
+*Strategic-Thinking-System*.zip

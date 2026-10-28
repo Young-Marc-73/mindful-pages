@@ -2,6 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      // Capture the bearer purchase reference before third-party resources load.
+      if (location.pathname.replace(/\/$/, '') === '/strategic-thinking/download') {
+        const purchaseUrl = new URL(location.href);
+        const purchaseId = purchaseUrl.searchParams.get('session_id');
+        if (purchaseId) {
+          try { sessionStorage.setItem('mp-strategic-thinking-checkout', purchaseId); } catch (_) {}
+          purchaseUrl.searchParams.delete('session_id');
+          history.replaceState(null, '', purchaseUrl.pathname + purchaseUrl.search + purchaseUrl.hash);
+        }
+      }
+    </script>
     <link rel="icon" type="image/svg+xml" href="/quill.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta

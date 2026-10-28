@@ -65,3 +65,12 @@ storage requires access to the Netlify Forms dashboard.
 
 Preview sources: Workshop and Repository KDP Interior v1.1; Business Journal
 Reader Review Draft v0.12; Research Journal Production Interior v1.1.
+
+## Strategic Thinking digital download — October 28, 2026
+
+The $49 one-time product page is `/strategic-thinking`, with setup, license and
+private download routes. It uses Netlify Functions, Stripe Checkout and Netlify
+Blobs. Purchases stay closed until server-side payment configuration and the
+private ZIP are present. The paid archive and all credentials stay outside this
+public repository. Run `npm run test:commerce` for payment/download regression
+checks. Complete `docs/strategic-thinking-launch.md` before enabling live sales.

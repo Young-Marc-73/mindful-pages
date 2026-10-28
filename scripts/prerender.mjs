@@ -16,7 +16,8 @@ for(const [path,[title,description]] of Object.entries(routes)){
   html=html.replace(/(<meta property="og:image" content=")[^"]*/,'$1https://mindfulpages.app/images/apps/'+product+'-share.png')
   .replace(/(<meta property="og:image:alt" content=")[^"]*/,'$1'+(product==='scopetrack'?'ScopeTrack: make the extra work clear before it begins.':'ReadyDesk: give every project a clearer starting point.'));
  }
+ if(path === '/strategic-thinking/download') html=html.replace('</head>','<meta name="robots" content="noindex,nofollow"/><meta name="referrer" content="no-referrer"/></head>');
  await mkdir('dist'+path,{recursive:true});await writeFile('dist'+path+'/index.html',html);
 }
-await writeFile('dist/sitemap.xml','<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+['/',...Object.keys(routes)].map(p=>'<url><loc>https://mindfulpages.app'+p+'</loc></url>').join('')+'</urlset>');
+await writeFile('dist/sitemap.xml','<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+['/',...Object.keys(routes).filter(p => p !== '/strategic-thinking/download')].map(p=>'<url><loc>https://mindfulpages.app'+p+'</loc></url>').join('')+'</urlset>');
 console.log('Prerendered '+Object.keys(routes).length+' dedicated pages with unique metadata.');

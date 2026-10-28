@@ -3,18 +3,21 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Mindful Pages \u2014 structured journals & planners. Marketing site.",
+  "description": "Mindful Pages — structured journals & planners. Marketing site.",
   "scripts": {
     "dev": "vite",
     "build": "vite build && vite build --ssr src/entry-server.jsx --outDir .prerender && node scripts/prerender.mjs",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:commerce": "node --test tests/strategic-thinking-commerce.test.mjs"
   },
   "dependencies": {
+    "@netlify/blobs": "^11.1.7",
     "clsx": "^2.1.1",
     "framer-motion": "^11.3.19",
     "lucide-react": "^0.436.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "stripe": "^23.0.1",
     "tailwind-merge": "^2.5.2"
   },
   "devDependencies": {
