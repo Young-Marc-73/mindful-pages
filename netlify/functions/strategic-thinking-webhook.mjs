@@ -1,7 +1,5 @@
 import Stripe from 'stripe';
-import { getStore } from '@netlify/blobs';
-import { createHash } from 'node:crypto';
-import { PRODUCT, RELEASE, TERMS, json, PRIVATE_HEADERS } from '../lib/strategic-thinking.mjs';
+import { dependencies, recordFulfillment, PRODUCT, RELEASE, TERMS, json, PRIVATE_HEADERS } from '../lib/strategic-thinking.mjs';
 export default async function(request){
  if(request.method!=='POST')return json({message:'Method not allowed.'},405);
  const key=process.env.STRIPE_SECRET_KEY,secret=process.env.STRIPE_WEBHOOK_SECRET;
@@ -9,13 +7,14 @@ export default async function(request){
  let event;
  try {const stripe=new Stripe(key);event=stripe.webhooks.constructEvent(await request.text(),request.headers.get('stripe-signature')||'',secret);}catch{return json({message:'Invalid signature.'},400);}
  if(!['checkout.session.completed','checkout.session.async_payment_succeeded'].includes(event.type))return new Response(null,{status:200,headers:PRIVATE_HEADERS});
- const session=event.data.object;
- if(session.metadata?.product!==PRODUCT || session.metadata?.release!==RELEASE || session.metadata?.terms_version!==TERMS || session.payment_status!=='paid')return new Response(null,{status:200,headers:PRIVATE_HEADERS});
+ const source=event.data.object;
+ if(source.metadata?.product!==PRODUCT || source.metadata?.release!==RELEASE || source.metadata?.terms_version!==TERMS || source.payment_status!=='paid')return new Response(null,{status:200,headers:PRIVATE_HEADERS});
  try {
-  const store=getStore({name:'strategic-thinking-orders',consistency:'strong'});
-  // Repeated events write the same small record. Do not email or grant unrelated privileges.
-  const id=createHash('sha256').update(session.id).digest('hex');
-  await store.setJSON(id,{sessionId:session.id,product:PRODUCT,release:RELEASE,termsVersion:session.metadata.terms_version,termsAccepted:session.metadata.terms_accepted==='true',termsAcceptedAt:session.metadata.terms_accepted_at,created:session.created,paymentStatus:session.payment_status,amountTotal:session.amount_total,currency:session.currency,live:session.livemode});
+  const deps=dependencies();
+  const session=await deps.stripe.checkout.sessions.retrieve(source.id,{expand:['line_items','payment_intent.latest_charge']});
+  // A signed event is a trigger; current Stripe state and the exact price authorize fulfillment.
+  // Record delivery entitlement even if the customer never reaches the return page.
+  await recordFulfillment(session,deps,{allowExpired:true});
   return new Response(null,{status:200,headers:PRIVATE_HEADERS});
  } catch {return json({message:'Please retry.'},503);}
 }

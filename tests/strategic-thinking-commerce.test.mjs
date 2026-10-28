@@ -3,19 +3,19 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile, readdir } from 'node:fs/promises';
 import Stripe from 'stripe';
-import { settings, createCheckout, retrieveDownload, assertPaidSession, checkReady, ZIP_KEY, PRODUCT, RELEASE, TERMS, AccessError } from '../netlify/lib/strategic-thinking.mjs';
+import { settings, createCheckout, retrieveDownload, recordFulfillment, assertPaidSession, checkReady, ZIP_KEY, PRODUCT, RELEASE, TERMS, AccessError } from '../netlify/lib/strategic-thinking.mjs';
 import webhook from '../netlify/functions/strategic-thinking-webhook.mjs';
 const env={STRATEGIC_THINKING_ENABLED:'true',STRATEGIC_THINKING_MODE:'test',STRIPE_SECRET_KEY:'sk_test_FAKE_FOR_UNIT_TESTS_ONLY',STRATEGIC_THINKING_PRICE_ID:'price_example123',STRIPE_WEBHOOK_SECRET:'whsec_FAKE_FOR_UNIT_TESTS_ONLY',STRATEGIC_THINKING_ORIGIN:'https://test.example'};
 const config=settings(env);
 const zipBytes=Buffer.from('PK\x03\x04FAKE_TEST_BYTES');
 const digest=createHash('sha256').update(zipBytes).digest('hex');
 function paid(){return {id:'cs_test_example12345678',livemode:false,mode:'payment',status:'complete',payment_status:'paid',created:Date.now()/1000,metadata:{product:PRODUCT,release:RELEASE,terms_version:TERMS,terms_accepted:'true'},line_items:{has_more:false,data:[{price:{id:config.priceId},quantity:1}]},payment_intent:{status:'succeeded',latest_charge:{refunded:false,amount_refunded:0,disputed:false,paid:true}}};}
-function dependencies(){return {config,stripe:{prices:{retrieve:async()=>({active:true,currency:'usd',unit_amount:4900,type:'one_time',livemode:false})},checkout:{sessions:{create:async data=>({url:'https://checkout.stripe.com/c/pay/test_session',input:data}),retrieve:async()=>paid()}}},store:{getMetadata:async()=>({metadata:{version:RELEASE,sha256:digest}}),get:async()=>zipBytes}};}
+function dependencies(){return {config,stripe:{prices:{retrieve:async()=>({active:true,currency:'usd',unit_amount:4900,type:'one_time',livemode:false})},checkout:{sessions:{create:async data=>({url:'https://checkout.stripe.com/c/pay/test_session',input:data}),retrieve:async()=>paid()}}},orders:{setJSON:async()=>{}},store:{getMetadata:async()=>({metadata:{version:RELEASE,sha256:digest}}),get:async()=>zipBytes}};}
 function request(data,origin=config.origin,type='application/json'){return new Request('https://test.example/.netlify/functions/example',{method:'POST',headers:{origin,'content-type':type},body:type==='application/json'?JSON.stringify(data):new URLSearchParams(data)});}
 const expectError=(fn,status)=>assert.rejects(fn,e=>e instanceof AccessError&&e.status===status);
 
 test('checkout stays closed when configuration is disabled or inconsistent',()=>{
- for(const changes of [{STRATEGIC_THINKING_ENABLED:'false'},{STRIPE_SECRET_KEY:''},{STRATEGIC_THINKING_PRICE_ID:''},{STRIPE_WEBHOOK_SECRET:''},{STRATEGIC_THINKING_MODE:'live'},{STRATEGIC_THINKING_ORIGIN:'https://test.example/path'},{STRATEGIC_THINKING_ORIGIN:'http://untrusted.example'}])assert.throws(()=>settings({...env,...changes}),AccessError);
+ for(const changes of [{STRIPE_SECRET_KEY:''},{STRATEGIC_THINKING_PRICE_ID:''},{STRIPE_WEBHOOK_SECRET:''},{STRATEGIC_THINKING_MODE:'live'},{STRATEGIC_THINKING_ORIGIN:'https://test.example/path'},{STRATEGIC_THINKING_ORIGIN:'http://untrusted.example'}])assert.throws(()=>settings({...env,...changes}),AccessError);
  assert.equal(settings({...env,STRATEGIC_THINKING_MODE:'live',STRIPE_SECRET_KEY:'rk_live_FAKE_FOR_UNIT_TESTS_ONLY',STRATEGIC_THINKING_ORIGIN:'https://mindfulpages.app'}).mode,'live');
 });
 test('checkout rejects wrong origins and absent or stale terms acceptance',async()=>{
@@ -29,7 +29,7 @@ test('checkout refuses missing file, wrong release metadata or mismatched price'
 test('server chooses exact one-time price and records scoped terms acceptance',async()=>{
  const d=dependencies();let input;d.stripe.checkout.sessions.create=async body=>{input=body;return {url:'https://checkout.stripe.com/c/pay/test_session'};};
  await createCheckout(request({acceptedTerms:true,termsVersion:TERMS,amount:1,priceId:'price_attacker',success_url:'https://evil.example'}),d);
- assert.equal(input.mode,'payment');assert.deepEqual(input.line_items,[{price:config.priceId,quantity:1}]);assert.equal(input.metadata.product,PRODUCT);assert.equal(input.metadata.terms_version,TERMS);assert.equal(input.metadata.terms_accepted,'true');assert.equal(input.success_url,'https://test.example/strategic-thinking/download?session_id={CHECKOUT_SESSION_ID}');
+ assert.match(input.integration_identifier,/^mindfulpages-strategic-[a-z]{8}$/);assert.equal(input.mode,'payment');assert.deepEqual(input.line_items,[{price:config.priceId,quantity:1}]);assert.equal(input.metadata.product,PRODUCT);assert.equal(input.metadata.terms_version,TERMS);assert.equal(input.metadata.terms_accepted,'true');assert.equal(input.success_url,'https://test.example/strategic-thinking/download?session_id={CHECKOUT_SESSION_ID}');
 });
 test('payment gate rejects unpaid, wrong-mode, wrong-product and unconsented sessions',()=>{
  const changes=[{payment_status:'unpaid'},{status:'open'},{livemode:true},{mode:'subscription'},{metadata:{}},{metadata:{...paid().metadata,product:'other'}},{metadata:{...paid().metadata,release:'old'}},{metadata:{...paid().metadata,terms_accepted:'false'}}];
@@ -78,4 +78,24 @@ test('public source does not include paid package or private keys',async()=>{
  async function walk(dir){for(const file of await readdir(dir,{withFileTypes:true})){const path=dir+'/'+file.name;if(file.isDirectory())await walk(path);else {assert.ok(!file.name.endsWith('.zip'),'ZIP must stay private');const data=await readFile(path);assert.ok(!data.includes(Buffer.from('sk_live_')),'No live key marker in public assets');}}}
  await walk('public');
  const html=await readFile('index.html','utf8');assert.ok(html.indexOf('purchaseUrl.searchParams.delete')<html.indexOf('fonts.googleapis.com'));assert.ok(html.includes('history.replaceState'));
+});
+
+test('closing new sales does not revoke valid paid delivery',async()=>{
+ const d=dependencies();d.config={...config,salesOpen:false};
+ await expectError(()=>checkReady(d),503);
+ const response=await retrieveDownload(request({sessionId:paid().id}),d);assert.equal(response.status,200);
+});
+test('fulfillment records the same paid entitlement on webhook retries without duplicate side effects',async()=>{
+ const d=dependencies();const records=new Map();d.orders.setJSON=async(k,v)=>records.set(k,v);const session=paid();
+ await recordFulfillment(session,d);await recordFulfillment(session,d);
+ assert.equal(records.size,1);const record=[...records.values()][0];assert.equal(record.downloadKey,ZIP_KEY);assert.equal(record.deliveryStatus,'authorized');assert.equal(record.sessionId,session.id);
+});
+test('background fulfillment can record an old paid order while direct download expiry is enforced',async()=>{
+ const d=dependencies();const session={...paid(),created:Date.now()/1000-8*86400};
+ await recordFulfillment(session,d,{allowExpired:true});
+ await expectError(()=>recordFulfillment(session,d),403);
+});
+test('unpaid and mismatched orders never acquire fulfillment records',async()=>{
+ const d=dependencies();d.orders.setJSON=async()=>{throw new Error('Should not record an unauthorized order');};
+ await expectError(()=>recordFulfillment({...paid(),payment_status:'unpaid'},d),403);
 });

@@ -38,3 +38,6 @@ Run `npm run test:commerce` and `npm run build`. Then test a real Stripe TEST-mo
 
 ## Current operational limits
 The source tests mock external Stripe/Blobs calls. Passing them is not a live payment or storage test. The implementation does not provide time-limited signed URLs independent of the purchase session, per-download fingerprinting, account-bound access, automatic email delivery or automated refund decisions. Do not advertise those features. Avoid including raw purchase references in analytics or logging. Private order records need an owner-defined retention/deletion policy. Retain proof of the exact terms shown at purchase.
+
+## Provider reference review
+Stripe integration guidance was reviewed after its tools became available. Checkout Sessions are used for the one-time price, a random-suffix integration identifier tags requests, and verified webhooks independently record delivery entitlements even when the buyer does not return to the website. The sales-open switch blocks new checkout without revoking valid paid downloads. A separate Stripe sandbox is preferred for new end-to-end testing; the currently connected merchant account is live-only. Do not use real payment details as a substitute for sandbox testing.
