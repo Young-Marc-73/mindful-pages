@@ -5,6 +5,7 @@ import Quill from "../brand/Quill";
 import { cn } from "../../lib/utils";
 
 const links = [
+  { label: "AI Thinking System", href: "/strategic-thinking" },
   { label: "Books & Journals", href: "/books" },
   { label: "Our Approach", href: "/approach" },
   { label: "Apps", href: "/apps" },
@@ -54,7 +55,7 @@ export default function Navbar({ barVisible = false }) {
             <a
               key={l.href}
               href={l.href}
-              className="relative rounded-full px-4 py-2 text-sm font-medium text-charcoal transition-colors hover:text-ink"
+              className="relative rounded-full px-3 py-2 text-sm font-medium text-charcoal transition-colors hover:text-ink"
             >
               <span className="relative z-10">{l.label}</span>
             </a>

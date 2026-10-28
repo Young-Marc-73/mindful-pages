@@ -1,3 +1,4 @@
+import StrategicThinkingPage, { StrategicThinkingFeature, StrategicThinkingStart, StrategicThinkingDownload, StrategicThinkingLicense } from "./pages/StrategicThinking";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import AnnouncementBar from "./components/sections/AnnouncementBar";
@@ -37,6 +38,7 @@ export default function App({ path = typeof window === "undefined" ? "/" : windo
       <main id="main-content" className={home ? "" : "pt-40 sm:pt-44"}>
         {home ? <>
         <Hero />
+        <StrategicThinkingFeature />
         <CoverMarquee />
         <Approach />
         <JournalGrid />
@@ -47,7 +49,7 @@ export default function App({ path = typeof window === "undefined" ? "/" : windo
         <section className="container-page py-16"><div className="mb-8"><h2 className="font-serif text-4xl">Tools for your business</h2><p className="mt-4 text-charcoal-muted">Explore the apps and their current availability.</p></div><AppsGrid /></section>
         <AboutMarc />
         <Newsletter />
-        </> : resources[path] ? <ResourcePage resource={resources[path]}/> : journal ? <BookPage journal={journal}/> : app ? <AppPage app={app}/> : path === "/books" ? <BooksPage/> : path === "/apps" ? <AppsPage/> : path === "/about-the-author" ? <AuthorPage/> : path === "/approach" ? <><div className="container-page"><Intro label="The method" title="Knowledge. Understanding. Wisdom. Evaluation."><p>One repeatable way to gather what matters, understand it, act and learn.</p></Intro></div><Approach/></> : <div className="container-page pb-20"><Intro label="Page not found" title="Let’s find your next page."><a href="/books" className="btn-primary">Explore the books</a></Intro></div>}
+        </> : path === "/strategic-thinking" ? <StrategicThinkingPage/> : path === "/strategic-thinking/start" ? <StrategicThinkingStart/> : path === "/strategic-thinking/download" ? <StrategicThinkingDownload/> : path === "/strategic-thinking/license" ? <StrategicThinkingLicense/> : resources[path] ? <ResourcePage resource={resources[path]}/> : journal ? <BookPage journal={journal}/> : app ? <AppPage app={app}/> : path === "/books" ? <BooksPage/> : path === "/apps" ? <AppsPage/> : path === "/about-the-author" ? <AuthorPage/> : path === "/approach" ? <><div className="container-page"><Intro label="The method" title="Knowledge. Understanding. Wisdom. Evaluation."><p>One repeatable way to gather what matters, understand it, act and learn.</p></Intro></div><Approach/></> : <div className="container-page pb-20"><Intro label="Page not found" title="Let’s find your next page."><a href="/books" className="btn-primary">Explore the books</a></Intro></div>}
         <Privacy />
       </main>
       <Footer />

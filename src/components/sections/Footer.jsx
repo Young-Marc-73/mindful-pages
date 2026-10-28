@@ -3,6 +3,7 @@ import Quill from "../brand/Quill";
 
 const nav = {
   Explore: [
+    { label: "AI Thinking System", href: "/strategic-thinking" },
     { label: "Books & Journals", href: "/books" },
     { label: "Our Approach", href: "/approach" },
     { label: "Apps", href: "/apps" },
