@@ -8,5 +8,68 @@ export const apps = [
 {"slug": "feedbacklens", "name": "FeedbackLens", "status": "Planned", "tagline": "Turn customer comments into questions worth acting on.", "description": "A planned app for finding source-linked themes in customer feedback and reviewing what changes after you act.", "problem": "Useful customer evidence often sits in separate records. FeedbackLens is planned to help you examine recurring themes, check the original comments and choose what to investigate or improve.", "steps": [["Bring the evidence", "Import feedback you have permission to use."], ["Review the themes", "Examine suggested patterns and the original comments behind them."], ["Choose an action", "Decide which issue to investigate or improvement to try."], ["Return to the evidence", "Compare later feedback with what you saw before."]], "features": [["Sources stay visible", "A theme should lead back to the comments that support it."], ["Interpretation you review", "AI can suggest a pattern; you check whether it fits the evidence."], ["Learning after action", "Use later feedback to examine whether your response helped."]], "relation": "FeedbackLens follows the journals’ cycle of gathering evidence, developing understanding, acting and evaluating. It is intended to accept independent imports; future sharing with Business Bloom would be optional.", "faq": [["Can I use it today?", "FeedbackLens is a planned product. Pricing and a release date have not been announced. Contact Marc to share your use case or ask about progress."], ["Do I need ProofPocket?", "No. FeedbackLens is planned to accept independent feedback imports. ProofPocket collects individual responses and publication permissions; FeedbackLens examines patterns across records."], ["Will it make decisions for me?", "No. The planned product supports your review. It will not treat a handful of comments as statistical proof or automatically make business decisions."]]},
 {"slug": "routinerunner", "name": "RoutineRunner", "status": "Planned", "tagline": "Make good work easier to repeat.", "description": "A planned app for turning explanations into approved procedures and recurring checklists.", "problem": "When a useful process lives only in someone’s head, repeating it can be difficult. RoutineRunner is planned to help capture the steps, confirm how the work should be done and keep improving the procedure.", "steps": [["Capture the explanation", "Describe how a recurring task is done."], ["Approve the procedure", "Review and correct the steps before using them."], ["Run the checklist", "Assign the work and repeat the checklist when needed."], ["Record and revise", "Track completion and update the procedure as you learn."]], "features": [["Reviewed procedures", "The owner approves the instructions before they become the working procedure."], ["Repeatable checklists", "Bring the agreed steps back when the task recurs."], ["Learning from the work", "Keep completion and revision history so improvements have context."]], "relation": "RoutineRunner carries practical understanding into repeated action. It will stand alone; a future opt-in Business Bloom connection could share selected procedures, responsibilities and revision history.", "faq": [["Can I use it today?", "RoutineRunner is a planned product. Pricing and a release date have not been announced. Contact Marc to share your use case or ask about progress."], ["Is this a full team-management platform?", "No. The initial plan focuses on procedures and recurring checklists. A full HR system, advanced screen recording and a large learning-management system are outside its scope."], ["Where does AI fit?", "AI may help organize an explanation into steps. You review and approve the procedure, and the core checklist records are intended to remain usable without AI."]]},
 {"slug": "messagememory", "name": "MessageMemory", "status": "Planned", "tagline": "Find the conversation. Keep the context.", "description": "A planned app for searching selected message history and creating summaries linked to the original conversations.", "problem": "Important details can disappear into long message threads. MessageMemory is planned to help you find what someone said, examine the context and return to the messages behind a summary.", "steps": [["Choose permitted sources", "Connect a supported account and select the sources or senders to include."], ["See available history", "Review the imported messages and any gaps in coverage."], ["Search and summarize", "Find original messages or ask for a source-linked summary."], ["Check the context", "Open the supporting messages before relying on an interpretation."]], "features": [["Original messages nearby", "Summaries should make their supporting sources easy to inspect."], ["Honest coverage", "Sync status and missing history should be visible rather than hidden behind a confident answer."], ["Deliberate sharing", "Personal conversations stay private by default; owning another app does not authorize copying them."]], "relation": "MessageMemory is intended to preserve conversational context alongside the learning you record in journals. A future Business Bloom connection would share only selected, approved material. That integration is not currently offered.", "faq": [["Can I use it today?", "MessageMemory is a planned product. Pricing and a release date have not been announced. Contact Marc to share your use case or ask about progress."], ["Which platforms will it support?", "WhatsApp, Discord, Slack and Telegram are being considered. Platform access must be tested before support is promised. The plan starts with one platform prototype, not a guaranteed four-platform launch."], ["Will it send messages or reply for me?", "Automatic replies and a universal sending interface are outside the initial scope. The focus is retrieving messages and reviewing summaries."], ["Will it have my complete message history?", "That depends on the supported platform and access it permits. Imported history is not the same as continuous syncing, and gaps must be shown."]]},
+{
+  "slug": "mindful-connector",
+  "name": "Mindful Connector",
+  "status": "Planned",
+  "tagline": "Connect your tools. Keep moving.",
+  "description": "A planned connector for turning supported remote MCP tools into an API your other apps can use, with a guided setup.",
+  "problem": "You find a useful tool, but the app you want to use it with expects a different kind of connection. Mindful Connector is planned to bridge supported MCP tools and apps that can call an API, without asking you to run your own server.",
+  "steps": [
+    [
+      "Add your connection",
+      "Provide a supported remote MCP server address and connect with your own credentials."
+    ],
+    [
+      "Choose the tools",
+      "Select the tools you want available and review what each one can do."
+    ],
+    [
+      "Test the connection",
+      "Check a supported connection and see clear guidance if something needs attention."
+    ],
+    [
+      "Use your API",
+      "Copy the API address, access key and setup instructions into an app that supports API connections."
+    ]
+  ],
+  "features": [
+    [
+      "Guided setup",
+      "A clear path from server address to tested connection, with practical instructions along the way."
+    ],
+    [
+      "Tools you select",
+      "Choose which tools to expose through your connection, with access keys you can revoke."
+    ],
+    [
+      "Understandable status",
+      "See usage and connection issues so you can understand what needs attention."
+    ]
+  ],
+  "relation": "Mindful Connector is planned as a standalone member of the Mindful Pages app family. Its purpose is to make useful tools easier to connect. You will not need the journals or another Mindful Pages app to use it. Connections to our other products are not currently offered.",
+  "faq": [
+    [
+      "Can I use it today?",
+      "Mindful Connector is planned and is not yet available. Pricing and a release date have not been announced. Use the form below to tell Marc what you would like to connect."
+    ],
+    [
+      "What are MCP and an API?",
+      "MCP is a standard way for AI applications to discover and use tools. An API lets software request data or actions. The first planned version will make supported remote MCP tools accessible through an ordinary API."
+    ],
+    [
+      "Will it connect any two apps?",
+      "Support will depend on the MCP server, its authentication and the destination app. The destination must accept API calls or a compatible integration. We will publish tested compatibility rather than promise every connection."
+    ],
+    [
+      "Will I need my own accounts?",
+      "Yes. The plan is to use accounts and credentials you are authorized to connect. Any charges from the original services remain separate. Please do not send API keys or passwords through the contact form."
+    ],
+    [
+      "Will it also turn APIs into MCP tools?",
+      "That is a possible later direction. The first planned release focuses on remote MCP-to-API connections."
+    ]
+  ]
+},
 ];
-export const pageMeta = {'/books':['Books & Journals','Explore four available Mindful Pages titles, actual sample pages and journal demonstrations.'],'/apps':['Apps for your business','Explore Business Bloom and seven focused business apps, with their purpose, planned workflows and current availability.'],'/about-the-author':['About Marc Young','The story behind Mindful Pages: a business-plan experience, three legal pads and a practical cycle of learning and action.'],'/approach':['The Mindful Pages approach','Gather knowledge, develop understanding, put it into practice and evaluate the result.']};
+export const pageMeta = {'/books':['Books & Journals','Explore four available Mindful Pages titles, actual sample pages and journal demonstrations.'],'/apps':['Apps for your business','Explore Business Bloom and eight focused business apps, with their purpose, planned workflows and current availability.'],'/about-the-author':['About Marc Young','The story behind Mindful Pages: a business-plan experience, three legal pads and a practical cycle of learning and action.'],'/approach':['The Mindful Pages approach','Gather knowledge, develop understanding, put it into practice and evaluate the result.']};
