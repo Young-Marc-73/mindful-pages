@@ -110,7 +110,7 @@ test('completed, fully discounted Stripe orders with server promotion metadata a
 test('workforce checkout and fulfillment use their own configured release and product',async()=>{
  const d=dependencies();
  d.config=settings({...env,AI_WORKFORCE_BUILDER_ENABLED:'true',AI_WORKFORCE_BUILDER_PRICE_ID:'price_workforce123',AI_WORKFORCE_BUILDER_REVIEW_CODES:'true'},workforceBuilder);
- d.store.getMetadata=async key=>{assert.equal(key,'ai-workforce-builder-0.3.1.zip');return {metadata:{version:'0.3.1',sha256:digest}};};
+ d.store.getMetadata=async key=>{assert.equal(key,'ai-workforce-builder-0.4.1.zip');return {metadata:{version:'0.4.1',sha256:digest}};};
  let input;d.stripe.checkout.sessions.create=async body=>{input=body;return {url:'https://checkout.stripe.com/c/pay/test_session'};};
  await createCheckout(request({acceptedTerms:true,termsVersion:workforceBuilder.termsVersion}),d);
  assert.equal(input.allow_promotion_codes,true);assert.equal(input.metadata.product,'mindful-pages-ai-workforce-builder');assert.equal(input.success_url,'https://test.example/ai-workforce-builder/download?session_id={CHECKOUT_SESSION_ID}');
