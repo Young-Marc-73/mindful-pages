@@ -5,6 +5,7 @@ import { readFile, readdir } from 'node:fs/promises';
 import Stripe from 'stripe';
 import { settings, createCheckout, retrieveDownload, recordFulfillment, assertPaidSession, checkReady, ZIP_KEY, PRODUCT, RELEASE, TERMS, AccessError } from '../netlify/lib/strategic-thinking.mjs';
 import webhook from '../netlify/functions/strategic-thinking-webhook.mjs';
+import {workforceBuilder} from '../src/commerce/strategicThinking.js';
 const env={STRATEGIC_THINKING_ENABLED:'true',STRATEGIC_THINKING_MODE:'test',STRIPE_SECRET_KEY:'sk_test_FAKE_FOR_UNIT_TESTS_ONLY',STRATEGIC_THINKING_PRICE_ID:'price_example123',STRIPE_WEBHOOK_SECRET:'whsec_FAKE_FOR_UNIT_TESTS_ONLY',STRATEGIC_THINKING_ORIGIN:'https://test.example'};
 const config=settings(env);
 const zipBytes=Buffer.from('PK\x03\x04FAKE_TEST_BYTES');
@@ -98,4 +99,22 @@ test('background fulfillment can record an old paid order while direct download 
 test('unpaid and mismatched orders never acquire fulfillment records',async()=>{
  const d=dependencies();d.orders.setJSON=async()=>{throw new Error('Should not record an unauthorized order');};
  await expectError(()=>recordFulfillment({...paid(),payment_status:'unpaid'},d),403);
+});
+
+test('completed, fully discounted Stripe orders with server promotion metadata authorize delivery',async()=>{
+ const complimentary={...paid(),payment_status:'no_payment_required',metadata:{...paid().metadata,review_codes:'true'},currency:'usd',amount_subtotal:4900,amount_total:0,total_details:{amount_discount:4900},payment_intent:null};
+ assert.doesNotThrow(()=>assertPaidSession(complimentary,config));
+ const d=dependencies();d.stripe.checkout.sessions.retrieve=async()=>complimentary;
+ assert.equal((await retrieveDownload(request({sessionId:complimentary.id}),d)).status,200);
+});
+test('workforce checkout and fulfillment use their own configured release and product',async()=>{
+ const d=dependencies();
+ d.config=settings({...env,AI_WORKFORCE_BUILDER_ENABLED:'true',AI_WORKFORCE_BUILDER_PRICE_ID:'price_workforce123',AI_WORKFORCE_BUILDER_REVIEW_CODES:'true'},workforceBuilder);
+ d.store.getMetadata=async key=>{assert.equal(key,'ai-workforce-builder-0.3.1.zip');return {metadata:{version:'0.3.1',sha256:digest}};};
+ let input;d.stripe.checkout.sessions.create=async body=>{input=body;return {url:'https://checkout.stripe.com/c/pay/test_session'};};
+ await createCheckout(request({acceptedTerms:true,termsVersion:workforceBuilder.termsVersion}),d);
+ assert.equal(input.allow_promotion_codes,true);assert.equal(input.metadata.product,'mindful-pages-ai-workforce-builder');assert.equal(input.success_url,'https://test.example/ai-workforce-builder/download?session_id={CHECKOUT_SESSION_ID}');
+ const session={...paid(),metadata:input.metadata,line_items:{has_more:false,data:[{price:{id:d.config.priceId},quantity:1}]}};
+ assert.doesNotThrow(()=>assertPaidSession(session,d.config));
+ assert.throws(()=>assertPaidSession(session,config),AccessError);
 });

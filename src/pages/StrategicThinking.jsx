@@ -9,26 +9,26 @@ const stages = [
   ['04', 'Evaluation', 'What did reality teach us?', 'Review what happened and decide whether to begin again.'],
 ];
 
-function PurchaseBox() {
+export function PurchaseBox({ item=product, workforce=false }) {
   const [ready, setReady] = useState(null);
   const [accepted, setAccepted] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   useEffect(() => {
     let active = true;
-    fetch('/.netlify/functions/strategic-thinking-status', { cache: 'no-store' })
+    fetch(`/.netlify/functions/${item.slug}-status`, { cache: 'no-store' })
       .then(r => r.ok ? r.json() : { ready: false })
       .then(data => { if (active) setReady(data.ready === true); })
       .catch(() => { if (active) setReady(false); });
     return () => { active = false; };
-  }, []);
+  }, [item.slug]);
   async function purchase(e) {
     e.preventDefault(); if (!accepted || busy || !ready) return;
     setBusy(true); setError('');
     try {
-      const response = await fetch('/.netlify/functions/strategic-thinking-checkout', {
+      const response = await fetch(`/.netlify/functions/${item.slug}-checkout`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ acceptedTerms: true, termsVersion: product.termsVersion }),
+        body: JSON.stringify({ acceptedTerms: true, termsVersion: item.termsVersion }),
       });
       const data = await response.json();
       if (!response.ok || !/^https:\/\/checkout\.stripe\.com\//.test(data.url || '')) throw new Error(data.message || 'Checkout is unavailable. Please try again shortly.');
@@ -37,15 +37,15 @@ function PurchaseBox() {
   }
   return <form onSubmit={purchase} className="rounded-[2rem] border border-ink/10 bg-white p-7 shadow-soft sm:p-9" id="get-the-system">
     <p className="text-xs font-semibold uppercase tracking-[.18em] text-sage-deep">The downloadable system</p>
-    <h2 className="mt-3 text-3xl">A clearer place to start.</h2>
-    <p className="mt-4 text-charcoal-muted leading-relaxed">Bring one real business question. Let the process help you work through what matters.</p>
+    <h2 className="mt-3 text-3xl">{workforce?'Build your AI workforce.':'A clearer place to start.'}</h2>
+    <p className="mt-4 text-charcoal-muted leading-relaxed">{workforce?'A guided setup tailored to your business and the AI tools you already use.':'Bring one real business question. Let the process help you work through what matters.'}</p>
     <div className="mt-6 flex items-baseline gap-2"><strong className="font-serif text-5xl text-ink">$49</strong><span className="text-sm text-charcoal-muted">USD · one-time purchase</span></div>
     <p className="mt-2 text-sm text-charcoal-muted">Any applicable tax is shown before payment.</p>
-    <ul className="mt-7 space-y-3 text-sm">{['Four movements with human review', '164 thinking-tool cards', 'Context questions and follow-ups', 'Decision and evaluation templates', 'Setup guide and worked example', 'Use with your own compatible LLM'].map(x => <li key={x} className="flex items-start gap-3"><Check className="mt-.5 h-4 w-4 shrink-0 text-sage-deep" aria-hidden="true"/>{x}</li>)}</ul>
-    <label className="mt-7 flex items-start gap-3 text-sm leading-relaxed"><input type="checkbox" checked={accepted} onChange={e => setAccepted(e.target.checked)} className="mt-1 h-4 w-4 shrink-0 accent-[#14182a]"/><span>I agree to the <a href="/strategic-thinking/license" target="_blank" rel="noopener noreferrer" className="underline">digital product license</a> for personal or internal business use.</span></label>
+    <ul className="mt-7 space-y-3 text-sm">{(workforce?['Seven-stage guided setup','Tailored AI roles and responsibilities','Reusable operational playbooks','Human approval and permission boundaries','Implementation tests and recovery checkpoints','Use with your own compatible LLM']:['Four movements with human review', '164 thinking-tool cards', 'Context questions and follow-ups', 'Decision and evaluation templates', 'Setup guide and worked example', 'Use with your own compatible LLM']).map(x => <li key={x} className="flex items-start gap-3"><Check className="mt-.5 h-4 w-4 shrink-0 text-sage-deep" aria-hidden="true"/>{x}</li>)}</ul>
+    <label className="mt-7 flex items-start gap-3 text-sm leading-relaxed"><input type="checkbox" checked={accepted} onChange={e => setAccepted(e.target.checked)} className="mt-1 h-4 w-4 shrink-0 accent-[#14182a]"/><span>I agree to the <a href={`${item.path}/license`} target="_blank" rel="noopener noreferrer" className="underline">digital product license</a> for personal or internal business use.</span></label>
     <button disabled={!ready || !accepted || busy} className="btn-primary mt-5 w-full disabled:cursor-not-allowed disabled:opacity-60 disabled:transform-none" type="submit">{busy ? 'Opening secure checkout…' : ready === null ? 'Checking checkout…' : ready ? <>Get the system — $49 <ArrowRight className="h-4 w-4" aria-hidden="true"/></> : 'Checkout is not open yet'}</button>
-    <p role="status" aria-live="polite" className="mt-3 text-sm text-charcoal-muted">{error || (ready === false ? 'Purchases are not being accepted yet. Please check back or contact Marc below.' : 'Pay securely with Stripe. Download after payment is confirmed.')}</p>
-    <p className="mt-5 text-xs leading-relaxed text-charcoal-muted">Version {product.version}. LLM access is separate and subject to your provider’s features and limits. This purchase includes the current package; future editions and lifetime updates are not promised.</p>
+    <p role="status" aria-live="polite" className="mt-3 text-sm text-charcoal-muted">{error || (ready === false ? 'Purchases are not being accepted yet. Please check back or contact Marc below.' : 'Continue securely with Stripe. If you have a private review code, apply it at checkout when available.')}</p>
+    <p className="mt-5 text-xs leading-relaxed text-charcoal-muted">Version {item.version}. LLM access is separate and subject to your provider’s features and limits. This purchase includes the current package; future editions and lifetime updates are not promised.</p>
     <a href="/about-the-author#contact" className="mt-4 inline-block text-sm underline">Questions? Contact Marc</a>
   </form>;
 }
@@ -91,7 +91,7 @@ export function StrategicThinkingDownload() {
     if(!id){setState('missing');setMessage('Your purchase reference is missing. Return from Stripe after checkout, or contact Marc with your receipt.');return;}
     setSession(id);
     fetch('/.netlify/functions/strategic-thinking-download',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:id,action:'verify'})})
-      .then(async r=>{const data=await r.json();if(!r.ok)throw new Error(data.message||'We could not confirm this purchase.');setState('ready');setMessage('Payment confirmed. Your download is ready.');})
+      .then(async r=>{const data=await r.json();if(!r.ok)throw new Error(data.message||'We could not confirm this purchase.');setState('ready');setMessage('Order confirmed. Your download is ready.');})
       .catch(e=>{setState('error');setMessage(e.message);});
   },[]);
   return <section className="container-page pb-20 max-w-3xl"><span className="kicker">Your download</span><h1 className="mt-6 text-5xl">Your next step starts here.</h1><p role="status" aria-live="polite" className="mt-6 text-lg leading-relaxed">{message}</p>{state==='ready'&&<><form method="POST" action="/.netlify/functions/strategic-thinking-download" className="mt-8"><input type="hidden" name="sessionId" value={session}/><button className="btn-primary"><Download className="h-4 w-4"/>Download Strategic Thinking System</button></form><p className="mt-4 text-sm text-charcoal-muted">Save the ZIP and keep this browser tab until your download is complete. This purchase link is private; do not share it.</p></>}<div className="mt-9 rounded-3xl border border-ink/10 bg-white p-6"><h2 className="text-2xl">Once you have the file</h2><p className="mt-3 text-charcoal-muted leading-relaxed">Extract the ZIP, open the Start Here guide, and load the operating instructions into your LLM. The setup guide walks you through it.</p><a href="/strategic-thinking/start" className="btn-ghost mt-5">Open the setup guide</a></div><p className="mt-7 text-sm text-charcoal-muted">If payment is still processing, return here after it is confirmed. If you paid but cannot retrieve the file, please <a href="/about-the-author#contact" className="underline">contact Marc</a> with your receipt reference. You do not need to buy again.</p><a href="/strategic-thinking" className="mt-5 inline-block text-sm underline">Back to the product</a></section>;

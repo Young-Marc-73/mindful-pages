@@ -4,11 +4,12 @@
     <meta charset="UTF-8" />
     <script>
       // Capture the bearer purchase reference before third-party resources load.
-      if (location.pathname.replace(/\/$/, '') === '/strategic-thinking/download') {
+      const downloadProduct = ['/strategic-thinking/download','/ai-workforce-builder/download'].find(path=>location.pathname.replace(/\/$/, '')===path);
+      if (downloadProduct) {
         const purchaseUrl = new URL(location.href);
         const purchaseId = purchaseUrl.searchParams.get('session_id');
         if (purchaseId) {
-          try { sessionStorage.setItem('mp-strategic-thinking-checkout', purchaseId); } catch (_) {}
+          try { sessionStorage.setItem('mp-'+downloadProduct.split('/')[1]+'-checkout', purchaseId); } catch (_) {}
           purchaseUrl.searchParams.delete('session_id');
           history.replaceState(null, '', purchaseUrl.pathname + purchaseUrl.search + purchaseUrl.hash);
         }
