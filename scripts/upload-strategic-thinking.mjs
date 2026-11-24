@@ -2,9 +2,12 @@
 import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { getStore } from '@netlify/blobs';
-import { ZIP_KEY, RELEASE } from '../netlify/lib/strategic-thinking.mjs';
+import { strategicThinking, workforceBuilder } from '../src/commerce/strategicThinking.js';
 let input='';for await(const chunk of process.stdin)input+=chunk;
-const {siteID,token,file}=JSON.parse(input);
+const {siteID,token,file,product='strategic-thinking'}=JSON.parse(input);
+const selected=[strategicThinking,workforceBuilder].find(p=>p.slug===product);
+if(!selected)throw new Error('Unknown product.');
+const RELEASE=selected.version,ZIP_KEY=`${selected.slug}-${RELEASE}.zip`;
 if(!siteID||!token||!file)throw new Error('Private stdin JSON requires siteID, token and absolute ZIP file path.');
 const data=await readFile(file);
 if(data.length>4*1024*1024 || data.subarray(0,4).toString('hex')!=='504b0304')throw new Error('Expected a ZIP under 4 MiB.');

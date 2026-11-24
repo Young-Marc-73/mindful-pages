@@ -6,6 +6,7 @@ import { cn } from "../../lib/utils";
 
 const links = [
   { label: "AI Thinking System", href: "/strategic-thinking" },
+  { label: "AI Workforce", href: "/ai-workforce-builder" },
   { label: "Books & Journals", href: "/books" },
   { label: "Our Approach", href: "/approach" },
   { label: "Apps", href: "/apps" },
