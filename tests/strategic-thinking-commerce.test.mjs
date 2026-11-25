@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile, readdir } from 'node:fs/promises';
 import Stripe from 'stripe';
-import { settings, createCheckout, retrieveDownload, recordFulfillment, assertPaidSession, checkReady, ZIP_KEY, PRODUCT, RELEASE, TERMS, AccessError } from '../netlify/lib/strategic-thinking.mjs';
+import { settings, createCheckout, retrieveDownload, recordFulfillment, assertPaidSession, checkReady, ZIP_KEY, PRODUCT, RELEASE, TERMS, AccessError, storageNames, seedQaArchive } from '../netlify/lib/strategic-thinking.mjs';
 import webhook from '../netlify/functions/strategic-thinking-webhook.mjs';
 import {workforceBuilder} from '../src/commerce/strategicThinking.js';
 const env={STRATEGIC_THINKING_ENABLED:'true',STRATEGIC_THINKING_MODE:'test',STRIPE_SECRET_KEY:'sk_test_FAKE_FOR_UNIT_TESTS_ONLY',STRATEGIC_THINKING_PRICE_ID:'price_example123',STRIPE_WEBHOOK_SECRET:'whsec_FAKE_FOR_UNIT_TESTS_ONLY',STRATEGIC_THINKING_ORIGIN:'https://test.example'};
@@ -117,4 +117,16 @@ test('workforce checkout and fulfillment use their own configured release and pr
  const session={...paid(),metadata:input.metadata,line_items:{has_more:false,data:[{price:{id:d.config.priceId},quantity:1}]}};
  assert.doesNotThrow(()=>assertPaidSession(session,d.config));
  assert.throws(()=>assertPaidSession(session,config),AccessError);
+});
+test('sandbox storage and production storage are separate and production cannot use test mode',()=>{
+ assert.equal(storageNames(config).downloads,'qa-paid-downloads');
+ assert.equal(storageNames(config).orders,'qa-strategic-thinking-orders');
+ assert.equal(storageNames({...config,mode:'live'}).downloads,'paid-downloads');
+ assert.equal(storageNames({...config,mode:'live'}).orders,'strategic-thinking-orders');
+ assert.throws(()=>settings({...env,STRATEGIC_THINKING_ORIGIN:'https://mindfulpages.app'}),AccessError);
+});
+test('sandbox seeds only a dedicated harmless QA fixture and never seeds live storage',async()=>{
+ let writes=0,entry;const store={set:async(key,bytes,options)=>{writes++;assert.equal(key,ZIP_KEY);assert.equal(options.onlyIfNew,true);assert.equal(createHash('sha256').update(bytes).digest('hex'),options.metadata.sha256);entry={metadata:options.metadata};},getMetadata:async()=>entry};
+ await seedQaArchive({...config,mode:'live'},store);assert.equal(writes,0);
+ await seedQaArchive(config,store);assert.equal(writes,1);assert.equal(entry.metadata.version,RELEASE);
 });

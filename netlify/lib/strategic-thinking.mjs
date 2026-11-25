@@ -13,6 +13,17 @@ export function json(data,status=200){return Response.json(data,{status,headers:
 const details = config => config.product || strategicThinking;
 const productId = config => `mindful-pages-${details(config).slug}`;
 const zipKey = config => `${details(config).slug}-${details(config).version}.zip`;
+// Sandbox orders must never deliver commercial archives. This tiny ZIP contains only a QA README.
+const QA_ARCHIVE=Buffer.from('UEsDBBQAAAAIAM6keF11Yb5hcQAAAIwAAAAKABwAUkVBRE1FLnR4dFVUCQADEzwGaxM8Bmt1eAsAAQToAwAABOgDAAANjMENAjEMBP9UsQ1wPVAAEkg0ENk+YpHYKHEi0j357WhGe1fjcxQ80ls6KAt9fASeN5z6i9HkwCtrR2qUdQrILZJah/netUojTQXf5jwokIyx641TWRhuZSEcU5qeC13rKCm2COlxrc4ClrKP2zouf1BLAQIeAxQAAAAIAM6keF11Yb5hcQAAAIwAAAAKABgAAAAAAAEAAACkgQAAAABSRUFETUUudHh0VVQFAAMTPAZrdXgLAAEE6AMAAAToAwAAUEsFBgAAAAABAAEAUAAAALUAAAAAAA==','base64');
+const QA_SHA=createHash('sha256').update(QA_ARCHIVE).digest('hex');
+export function storageNames(config){const test=config.mode==='test';return {downloads:test?'qa-paid-downloads':'paid-downloads',orders:`${test?'qa-':''}${details(config).slug}-orders`};}
+export async function seedQaArchive(config,store){
+  if(config.mode!=='test')return;
+  const key=zipKey(config);
+  let metadata=await store.getMetadata(key);
+  if(!metadata){await store.set(key,QA_ARCHIVE,{onlyIfNew:true,metadata:{version:details(config).version,sha256:QA_SHA}});metadata=await store.getMetadata(key);}
+  if(metadata?.metadata?.sha256!==QA_SHA || metadata.metadata.version!==details(config).version)throw new AccessError(503,'Sandbox archive is not ready.');
+}
 export function settings(env=process.env, product=strategicThinking) {
   const prefix=product.slug.replaceAll('-','_').toUpperCase();
   const mode=env[`${prefix}_MODE`] || env.STRATEGIC_THINKING_MODE;
@@ -21,10 +32,11 @@ export function settings(env=process.env, product=strategicThinking) {
   try { const u=new URL(env.STRATEGIC_THINKING_ORIGIN || 'https://mindfulpages.app'); if(u.pathname!=='/'||u.search||u.hash||u.username||u.password)throw new Error();origin=u.origin; } catch {throw new AccessError(503,'Checkout is not open yet.');}
   if(!['test','live'].includes(mode) || !new RegExp(`^(sk|rk)_${mode}_`).test(key) || !/^price_[A-Za-z0-9]+$/.test(env[`${prefix}_PRICE_ID`]||'') || !env.STRIPE_WEBHOOK_SECRET?.startsWith('whsec_')) throw new AccessError(503,'Checkout is not open yet.');
   if(mode==='live' && origin!=='https://mindfulpages.app')throw new AccessError(503,'Checkout is not open yet.');
+  if(mode==='test' && origin==='https://mindfulpages.app')throw new AccessError(503,'Checkout is not open yet.');
   if(mode==='test' && !origin.startsWith('https://') && !/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin))throw new AccessError(503,'Checkout is not open yet.');
   return {product,salesOpen:env[`${prefix}_ENABLED`]==='true',reviewCodes:env[`${prefix}_REVIEW_CODES`]==='true',mode,key,origin,priceId:env[`${prefix}_PRICE_ID`],webhookSecret:env.STRIPE_WEBHOOK_SECRET,automaticTax:env.STRATEGIC_THINKING_AUTOMATIC_TAX==='true'};
 }
-export function dependencies(env=process.env,product=strategicThinking){const config=settings(env,product);return {config,stripe:new Stripe(config.key,{maxNetworkRetries:1,timeout:12000}),store:getStore({name:'paid-downloads',consistency:'strong'}),orders:getStore({name:`${product.slug}-orders`,consistency:'strong'})};}
+export function dependencies(env=process.env,product=strategicThinking){const config=settings(env,product),names=storageNames(config),store=getStore({name:names.downloads,consistency:'strong'});return {config,stripe:new Stripe(config.key,{maxNetworkRetries:1,timeout:12000}),store,orders:getStore({name:names.orders,consistency:'strong'}),...(config.mode==='test'?{seedQa:()=>seedQaArchive(config,store)}:{})};}
 export function checkOrigin(request,config){if(request.headers.get('origin')!==config.origin)throw new AccessError(403,'Please use the checkout or download page on Mindful Pages.');}
 export async function parseBody(request){
   if(Number(request.headers.get('content-length')||0)>4096)throw new AccessError(413,'Request is too large.');
@@ -32,8 +44,9 @@ export async function parseBody(request){
   const body=await request.text();if(body.length>4096)throw new AccessError(413,'Request is too large.');
   try {return type.includes('application/json')?JSON.parse(body):Object.fromEntries(new URLSearchParams(body));}catch{throw new AccessError(400,'Please try again from the product page.');}
 }
-export async function checkReady({config,stripe,store}){
+export async function checkReady({config,stripe,store,seedQa}){
   if(!config.salesOpen)throw new AccessError(503,'Checkout is not open yet.');
+  if(config.mode==='test' && seedQa)await seedQa();
   const entry=await store.getMetadata(zipKey(config));
   if(!entry || entry.metadata?.version!==details(config).version || !/^[a-f0-9]{64}$/.test(entry.metadata?.sha256||''))throw new AccessError(503,'The download is being prepared. Purchases are not open yet.');
   const price=await stripe.prices.retrieve(config.priceId);
@@ -89,10 +102,11 @@ export async function retrieveDownload(request,deps){
   const key=zipKey(deps.config), p=details(deps.config);
   const entry=await deps.store.getMetadata(key);
   if(!entry)throw new AccessError(503,'Your payment is confirmed, but the file is temporarily unavailable. Please contact Marc; do not buy again.');
+  if(deps.config.mode==='test' && deps.seedQa && entry.metadata?.sha256!==QA_SHA)throw new AccessError(503,'Sandbox archive is not ready.');
   if(body.action==='verify')return json({ready:true,version:p.version});
   const bytes=await deps.store.get(key,{type:'arrayBuffer'});
   if(!bytes || createHash('sha256').update(new Uint8Array(bytes)).digest('hex')!==entry.metadata?.sha256)throw new AccessError(503,'The download needs attention. Please contact Marc; do not buy again.');
-  return new Response(bytes,{headers:{...PRIVATE_HEADERS,'Content-Type':'application/zip','Content-Disposition':`attachment; filename="${p.name.replaceAll(' ','-')}-${p.version}.zip"`}});
+  return new Response(bytes,{headers:{...PRIVATE_HEADERS,'Content-Type':'application/zip','Content-Disposition':`attachment; filename="${deps.config.mode==='test'?'TEST-ONLY-':''}${p.name.replaceAll(' ','-')}-${p.version}.zip"`}});
 }
 export function safeError(error){
   // Never log request bodies, keys, session IDs, full Stripe errors or purchase URLs.

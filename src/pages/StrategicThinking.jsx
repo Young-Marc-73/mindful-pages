@@ -13,12 +13,13 @@ export function PurchaseBox({ item=product, workforce=false }) {
   const [ready, setReady] = useState(null);
   const [accepted, setAccepted] = useState(false);
   const [busy, setBusy] = useState(false);
+  const [testMode,setTestMode] = useState(false);
   const [error, setError] = useState('');
   useEffect(() => {
     let active = true;
     fetch(`/.netlify/functions/${item.slug}-status`, { cache: 'no-store' })
       .then(r => r.ok ? r.json() : { ready: false })
-      .then(data => { if (active) setReady(data.ready === true); })
+      .then(data => { if (active) {setReady(data.ready === true);setTestMode(data.testMode === true);} })
       .catch(() => { if (active) setReady(false); });
     return () => { active = false; };
   }, [item.slug]);
@@ -36,6 +37,7 @@ export function PurchaseBox({ item=product, workforce=false }) {
     } catch (e) { setError(e.message); setBusy(false); }
   }
   return <form onSubmit={purchase} className="rounded-[2rem] border border-ink/10 bg-white p-7 shadow-soft sm:p-9" id="get-the-system">
+    {testMode&&<p role="status" className="mb-4 rounded-lg border border-amber-500 p-3 text-sm font-semibold">TEST MODE — no real charge. Use Stripe test card details only. Downloads contain a QA fixture, not the commercial product.</p>}
     <p className="text-xs font-semibold uppercase tracking-[.18em] text-sage-deep">The downloadable system</p>
     <h2 className="mt-3 text-3xl">{workforce?'Build your AI workforce.':'A clearer place to start.'}</h2>
     <p className="mt-4 text-charcoal-muted leading-relaxed">{workforce?'A guided setup tailored to your business and the AI tools you already use.':'Bring one real business question. Let the process help you work through what matters.'}</p>
