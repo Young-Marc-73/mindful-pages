@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile, readdir } from 'node:fs/promises';
 import Stripe from 'stripe';
-import { settings, createCheckout, retrieveDownload, recordFulfillment, assertPaidSession, checkReady, ZIP_KEY, PRODUCT, RELEASE, TERMS, AccessError, storageNames, seedQaArchive } from '../netlify/lib/strategic-thinking.mjs';
+import { settings, createCheckout, retrieveDownload, recordFulfillment, assertPaidSession, checkReady, ZIP_KEY, PRODUCT, RELEASE, TERMS, AccessError, storageNames, seedQaArchive, runtimeEnv } from '../netlify/lib/strategic-thinking.mjs';
 import webhook from '../netlify/functions/strategic-thinking-webhook.mjs';
 import {workforceBuilder} from '../src/commerce/strategicThinking.js';
 const env={STRATEGIC_THINKING_ENABLED:'true',STRATEGIC_THINKING_MODE:'test',STRIPE_SECRET_KEY:'sk_test_FAKE_FOR_UNIT_TESTS_ONLY',STRATEGIC_THINKING_PRICE_ID:'price_example123',STRIPE_WEBHOOK_SECRET:'whsec_FAKE_FOR_UNIT_TESTS_ONLY',STRATEGIC_THINKING_ORIGIN:'https://test.example'};
@@ -129,4 +129,11 @@ test('sandbox seeds only a dedicated harmless QA fixture and never seeds live st
  let writes=0,entry;const store={set:async(key,bytes,options)=>{writes++;assert.equal(key,ZIP_KEY);assert.equal(options.onlyIfNew,true);assert.equal(createHash('sha256').update(bytes).digest('hex'),options.metadata.sha256);entry={metadata:options.metadata};},getMetadata:async()=>entry};
  await seedQaArchive({...config,mode:'live'},store);assert.equal(writes,0);
  await seedQaArchive(config,store);assert.equal(writes,1);assert.equal(entry.metadata.version,RELEASE);
+});
+test('QA configuration is isolated, cannot fall back to production secrets, and rejects production context',()=>{
+ const preview={MP_QA_ENABLED:'true',MP_QA_ORIGIN:'https://deploy-preview-8--thriving-douhua-a6d84f.netlify.app',MP_QA_STRIPE_SECRET_KEY:env.STRIPE_SECRET_KEY,MP_QA_WEBHOOK_SECRET:env.STRIPE_WEBHOOK_SECRET,MP_QA_STRATEGIC_PRICE_ID:'price_testStrategic',MP_QA_WORKFORCE_PRICE_ID:'price_testWorkforce'};
+ assert.equal(settings(preview).mode,'test');assert.equal(settings(preview,workforceBuilder).priceId,'price_testWorkforce');
+ assert.throws(()=>settings({...preview,MP_QA_STRIPE_SECRET_KEY:undefined,STRIPE_SECRET_KEY:'rk_live_FAKE_FOR_UNIT_TESTS_ONLY'}),AccessError);
+ assert.throws(()=>runtimeEnv({...preview,CONTEXT:'production'}),AccessError);
+ assert.throws(()=>runtimeEnv({...preview,MP_QA_ORIGIN:'https://mindfulpages.app'}),AccessError);
 });

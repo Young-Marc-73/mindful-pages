@@ -24,7 +24,14 @@ export async function seedQaArchive(config,store){
   if(!metadata){await store.set(key,QA_ARCHIVE,{onlyIfNew:true,metadata:{version:details(config).version,sha256:QA_SHA}});metadata=await store.getMetadata(key);}
   if(metadata?.metadata?.sha256!==QA_SHA || metadata.metadata.version!==details(config).version)throw new AccessError(503,'Sandbox archive is not ready.');
 }
+// Preview-specific variables are separate from production variables; no production setting is edited for QA.
+export function runtimeEnv(env=process.env){
+ if(env.MP_QA_ENABLED!=='true')return env;
+ if(env.CONTEXT==='production' || env.MP_QA_ORIGIN!=='https://deploy-preview-8--thriving-douhua-a6d84f.netlify.app')throw new AccessError(503,'Sandbox checkout is unavailable.');
+ return {...env,STRIPE_SECRET_KEY:env.MP_QA_STRIPE_SECRET_KEY,STRIPE_WEBHOOK_SECRET:env.MP_QA_WEBHOOK_SECRET,STRATEGIC_THINKING_MODE:'test',AI_WORKFORCE_BUILDER_MODE:'test',STRATEGIC_THINKING_ORIGIN:env.MP_QA_ORIGIN,STRATEGIC_THINKING_PRICE_ID:env.MP_QA_STRATEGIC_PRICE_ID,AI_WORKFORCE_BUILDER_PRICE_ID:env.MP_QA_WORKFORCE_PRICE_ID,STRATEGIC_THINKING_ENABLED:'true',AI_WORKFORCE_BUILDER_ENABLED:'true',STRATEGIC_THINKING_REVIEW_CODES:'true',AI_WORKFORCE_BUILDER_REVIEW_CODES:'true',STRATEGIC_THINKING_AUTOMATIC_TAX:'false'};
+}
 export function settings(env=process.env, product=strategicThinking) {
+  env=runtimeEnv(env);
   const prefix=product.slug.replaceAll('-','_').toUpperCase();
   const mode=env[`${prefix}_MODE`] || env.STRATEGIC_THINKING_MODE;
   const key=env.STRIPE_SECRET_KEY || '';
